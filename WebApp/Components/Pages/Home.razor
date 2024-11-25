@@ -1,0 +1,44 @@
+﻿@page "/"
+@using Application.Interface
+@using Domain.Models
+@rendermode InteractiveServer
+@inject IChatService ChatService;
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@foreach(var chat in _chats)
+{
+    <li>
+        <o>
+           @chat.GUID number of messages : @chat.Messages.Count<button @onclick= "() => ShowMessages(chat)"> Show these messages</button>
+           
+        </o>
+    </li>
+    
+}
+@if (shownChatMessages != null)
+{
+    foreach (var message in shownChatMessages.Messages)
+    {
+        <div>
+            <p>@message.Sender</p>
+            <p>@message.Text</p>
+        </div>
+    }
+}
+
+@code{
+
+    private List<Chat> _chats {get;set;}
+    private Chat? shownChatMessages { get; set; } = null;
+    protected override async Task OnInitializedAsync() {
+        _chats = await ChatService.GetChats();
+    }
+    private void ShowMessages(Chat chat){
+        shownChatMessages = chat;
+    }
+}
