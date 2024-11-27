@@ -1,6 +1,7 @@
 ﻿using Data.Repo;
 using Data.Repo.Context;
 using Data.Repo.Interface;
+using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,11 +18,7 @@ namespace Data
         public static void AddDependencies(IServiceCollection services, string connectionstring)
         {
             services.AddDbContextFactory<Context>(opt => opt.UseNpgsql(connectionstring));
-            services.AddScoped<IChatRepository, ChatRepository>();
-            services.AddScoped<ICredentialRepo, CredentialRepo>();
-            services.AddScoped<IMessageRepo, MessageRepo>();
-            services.AddScoped<IUserRepo, UserRepo>();
-
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
         }
     }

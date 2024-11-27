@@ -11,6 +11,8 @@ namespace Domain.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string GUID { get; set; }
+        public List<User> FriendList { get; set; } = new List<User>();
+        public List<Chat> Chats { get; set; } = new List<Chat>();
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repo.Interface
 {
-    public interface IUserRepo
+    internal interface IRepository
     {
     }
 }

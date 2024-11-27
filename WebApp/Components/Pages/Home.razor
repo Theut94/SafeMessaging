@@ -2,7 +2,7 @@
 @using Application.Interface
 @using Domain.Models
 @rendermode InteractiveServer
-@inject IChatService ChatService;
+@inject IUserService UserService;
 
 <PageTitle>Home</PageTitle>
 
@@ -33,10 +33,14 @@ Welcome to your new app.
 
 @code{
 
+    private User _user {get;set;}
     private List<Chat> _chats {get;set;}
     private Chat? shownChatMessages { get; set; } = null;
+
+
     protected override async Task OnInitializedAsync() {
-        _chats = await ChatService.GetChats();
+        _user = await UserService.GetUser();
+        _chats = _user.Chats;
     }
     private void ShowMessages(Chat chat){
         shownChatMessages = chat;
