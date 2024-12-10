@@ -1,4 +1,5 @@
 ﻿using Application.Interface;
+using Application.Util;
 using Data.Repo.Interface;
 using Domain.Models;
 using System;
@@ -13,10 +14,12 @@ namespace Application.Services
     {
 
         private IRepository<User> _repo;
+        private IEncryptionUtil _encryptionUtil;
         
-        public UserService(IRepository<User> repo)
+        public UserService(IRepository<User> repo, IEncryptionUtil encryptionUtil)
         {
             _repo = repo;
+            _encryptionUtil = encryptionUtil;
         }
 
         public Task<User> GetUser()
@@ -48,6 +51,18 @@ namespace Application.Services
                 FriendList = new List<User>()
 
             });
+        }
+
+        public Task<User> Login(string username, byte[] password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<User> Register(string username, byte[] password)
+        {
+         
+
+            _repo.
         }
     }
 }
