@@ -22,16 +22,6 @@ namespace Application.Services
             _encryptionUtil = encryptionUtil;
         }
 
-        public Task<User> CreateUser(User user)
-        {
-            if (_repo.GetAllAsync().Result.Any(x => x.GUID == user.GUID))
-            {
-                throw new InvalidOperationException("User already exists");
-            }
-            _repo.AddAsync(user);
-            return Task.FromResult(user);
-        }
-
         public Task<User> GetUser(string GUID)
         {
             var user = _repo.GetAllAsync().Result.FirstOrDefault(x => x.GUID == GUID);

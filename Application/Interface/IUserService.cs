@@ -11,7 +11,6 @@ namespace Application.Interface
     public interface IUserService
     {
         public Task<User> GetUser(string GUID);
-        public Task<User> CreateUser(User user);
         public Task<User> EditUser(User user);
         public Task<User> DeleteUser(User user);
         public Task<User> AddFriend(User user, User friend);
