@@ -8,11 +8,11 @@ namespace Domain.Models
 {
     public class User
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string GUID { get; set; }
+        required public string FirstName { get; set; }
+        required public string LastName { get; set; }
+        required public string GUID { get; set; }
         public List<User> FriendList { get; set; } = new List<User>();
         public List<Chat> Chats { get; set; } = new List<Chat>();
-
+        public required Credentials Credentials { get; set; }
     }
 }

@@ -17,5 +17,49 @@ namespace Application.Services
         {
             _repo = repo;
         }
+
+        public Task<List<Message>> GetMessages(Chat chat)
+        {
+            return Task.FromResult(chat.Messages ?? new List<Message>());
+        }
+
+        public Task<Message> SendMessage(Chat chat, Message message)
+        {
+            if (chat.Messages == null)
+            {
+                chat.Messages = new List<Message>();
+            }
+            chat.Messages.Add(message);
+            return Task.FromResult(message);
+        }
+
+        public Task<Message> DeleteMessage(Chat chat, Message message)
+        {
+            var messageToDelete = chat.Messages?.FirstOrDefault(x => x.GUID == message.GUID);
+            if (messageToDelete == null)
+            {
+                throw new InvalidOperationException("Message not found");
+            }
+            if (chat.Messages != null)
+            {
+                chat.Messages.Remove(messageToDelete);
+            }
+            return Task.FromResult(messageToDelete);
+        }
+
+        public Task<Message> EditMessage(Chat chat, Message message)
+        {
+            var messageToEdit = chat.Messages?.FirstOrDefault(x => x.GUID == message.GUID);
+            if (messageToEdit == null)
+            {
+                throw new InvalidOperationException("Message not found");
+            }
+            if (chat.Messages != null)
+            {
+                chat.Messages.Remove(messageToEdit);
+                chat.Messages.Add(message);
+            }
+            return Task.FromResult(message);
+        }
     }
 }

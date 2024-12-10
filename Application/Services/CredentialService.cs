@@ -17,5 +17,36 @@ namespace Application.Services
         {
             _repo = repo;
         }
+
+        public Task<Credentials> CreateCredentials(Credentials credentials)
+        {
+            if (_repo.GetAllAsync().Result.Any(x => x.User.GUID == credentials.User.GUID))
+            {
+                throw new InvalidOperationException("Credentials already exists");
+            }
+            _repo.AddAsync(credentials);
+            return Task.FromResult(credentials);
+        }
+
+        public async Task<Credentials> GetCredentials(Credentials credentials)
+        {
+            var credential = await _repo.GetByIdAsync(credentials.User.GUID);
+            if (credential == null)
+            {
+                throw new InvalidOperationException("Credentials not found");
+            }
+            return credential;
+        }
+
+        public Task<Credentials> DeleteCredentials(Credentials credentials)
+        {
+            var credentialToDelete = _repo.GetAllAsync().Result.FirstOrDefault(x => x.User.GUID == credentials.User.GUID);
+            if (credentialToDelete == null)
+            {
+                throw new InvalidOperationException("Credentials not found");
+            }
+            _repo.DeleteAsync(credentialToDelete);
+            return Task.FromResult(credentialToDelete);
+        }
     }
 }

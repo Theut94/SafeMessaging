@@ -8,8 +8,8 @@ namespace Domain.Models
 {
     public class Message
     {
-        public string Text { get; set; }
-        public string GUID { get; set; }
-        public string Sender { get; set; }
+        public string? Text { get; set; }
+        required public string GUID { get; set; }
+        required public string Sender { get; set; }
     }
 }
