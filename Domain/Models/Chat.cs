@@ -8,8 +8,8 @@ namespace Domain.Models
 {
     public class Chat
     {
-        public List<User> Participants { get; set; }
-        public string GUID { get; set; }
-        public List<Message> Messages { get; set; }
+        required public List<User> Users { get; set; }
+        required public string GUID { get; set; }
+        public List<Message>? Messages { get; set; }
     }
 }

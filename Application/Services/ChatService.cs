@@ -16,14 +16,41 @@ namespace Application.Services
         {
             _repo = repo;
         }
-        public Task<Chat> GetChat(string GUID)
+
+        public Task<Chat> CreateChat(User user, Chat chat)
         {
-            throw new NotImplementedException();
+            if (user.Chats.Any(x => x.GUID == chat.GUID))
+            {
+                throw new InvalidOperationException("Chat already exists");
+            }
+            user.Chats.Add(chat);
+            return Task.FromResult(chat);
         }
 
-        public Task<List<Chat>> GetChats()
+        public Task<Chat> DeleteChat(User user, Chat chat)
         {
-            throw new NotImplementedException();
+            var chatToDelete = user.Chats.FirstOrDefault(x => x.GUID == chat.GUID);
+            if (chatToDelete == null)
+            {
+                throw new InvalidOperationException("Chat not found");
+            }
+            user.Chats.Remove(chatToDelete);
+            return Task.FromResult(chatToDelete);
+        }
+
+        public Task<Chat> GetChat(User user, string GUID)
+        {
+            var chat = user.Chats.FirstOrDefault(x => x.GUID == GUID);
+            if (chat == null)
+            {
+                throw new InvalidOperationException("Chat not found");
+            }
+            return Task.FromResult(chat);
+        }
+
+        public Task<List<Chat>> GetChats(User user)
+        {
+            return Task.FromResult(user.Chats);
         }
     }
 }
