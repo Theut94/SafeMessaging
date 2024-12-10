@@ -10,10 +10,10 @@ namespace Data.Repo.Context
 {
     public class Context : DbContext
     {
-        public DbSet<Chat> Chats { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Credentials> Credentials { get; set; }
+        public required DbSet<Chat> Chats { get; set; }
+        public required DbSet<Message> Messages { get; set; }
+        public required DbSet<User> Users { get; set; }
+        public required DbSet<Credentials> Credentials { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
