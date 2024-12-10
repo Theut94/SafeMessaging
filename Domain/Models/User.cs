@@ -8,9 +8,10 @@ namespace Domain.Models
 {
     public class User
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string GUID { get; set; }
+        public required string FirstName { get; set; }
+        public required string LastName { get; set; }
+        public required string GUID { get; set; }
+        public required string PublickKey { get; set; }
         public List<User> FriendList { get; set; } = new List<User>();
         public List<Chat> Chats { get; set; } = new List<Chat>();
         public required Credentials Credentials { get; set; }

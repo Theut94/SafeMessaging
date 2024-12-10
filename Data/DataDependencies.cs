@@ -19,6 +19,7 @@ namespace Data
         {
             services.AddDbContextFactory<Context>(opt => opt.UseNpgsql(connectionstring));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUserRepository, UserRepository>();
 
         }
     }

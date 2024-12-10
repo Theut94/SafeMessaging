@@ -15,6 +15,10 @@ namespace Data.Repo.Context
         public required DbSet<User> Users { get; set; }
         public required DbSet<Credentials> Credentials { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>(entity =>
@@ -36,15 +40,8 @@ namespace Data.Repo.Context
 
             modelBuilder.Entity<Credentials>(entity =>
             {
-                entity.HasKey(c => c.User.GUID);
                 entity.Property(c => c.Password).IsRequired();
                 entity.Property(c => c.UserName).IsRequired();
-
-                entity.HasOne(c => c.User)
-                      .WithOne()
-                      .HasForeignKey<Credentials>(c => c.User.GUID)
-                      .IsRequired()
-                      .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Chat>(entity =>

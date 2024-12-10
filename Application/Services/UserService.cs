@@ -13,10 +13,10 @@ namespace Application.Services
     public class UserService : IUserService
     {
 
-        private IRepository<User> _repo;
+        private IUserRepository _repo;
         private IEncryptionUtil _encryptionUtil;
         
-        public UserService(IRepository<User> repo, IEncryptionUtil encryptionUtil)
+        public UserService(IUserRepository repo, IEncryptionUtil encryptionUtil)
         {
             _repo = repo;
             _encryptionUtil = encryptionUtil;
@@ -81,11 +81,32 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<User> Register(string username, byte[] password)
+        public async Task Register(string username, byte[] password, string firstName, string lastName, string PublicKey)
         {
-         
+           var user = await _repo.GetUserByEmail(username);
+           if(username == null)
+           {
+                var salt = _encryptionUtil.GetSalt();
+                var hashedPassword = _encryptionUtil.HashPassword(Encoding.UTF8.GetString(password), salt);
+                var userToCreate = new User()
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Credentials = new Credentials()
+                    {
+                        Password = hashedPassword,
+                        Salt = salt,
+                        UserName = username
 
-            _repo.
+                    },
+                    GUID = Guid.NewGuid().ToString(),
+                    PublickKey = PublicKey
+
+                };
+
+                await _repo.AddAsync(userToCreate);
+           }
+
         }
     }
 }

@@ -17,10 +17,10 @@ namespace Data.Repo
                 _dbContextFactory = dbContextFactory;
             }
 
-            public async Task<T?> GetByIdAsync(int id)
+            public async Task<T?> GetByIdAsync(string Guid)
             {
                 await using var context = _dbContextFactory.CreateDbContext();
-                return await context.Set<T>().FindAsync(id);
+                return await context.Set<T>().FindAsync(Guid);
             }
 
             public async Task<IEnumerable<T>> GetAllAsync()

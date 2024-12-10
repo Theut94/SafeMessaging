@@ -1,5 +1,6 @@
 ﻿using Application.Interface;
 using Application.Services;
+using Application.Util;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Application
             services.AddScoped<ICredentialService, CredentialService>();
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEncryptionUtil, EncryptionUtil>();
 
         }
     }

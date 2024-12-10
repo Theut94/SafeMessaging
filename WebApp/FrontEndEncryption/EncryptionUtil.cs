@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 
-namespace Application.Util
+namespace WebApp.FrontEndEncryption
 {
-    public class Encryption : IEncryptionUtil
+    public class EncryptionUtil : IEncryptionUtil
     {
         public byte[] DeriveKeyFromPassword(string password, byte[] salt)
         {
@@ -29,6 +29,7 @@ namespace Application.Util
         {
             return Convert.FromBase64String(Crypto.GenerateSalt(32));
         }
+
 
     }
 }

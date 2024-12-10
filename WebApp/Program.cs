@@ -1,4 +1,5 @@
 using Application;
+using Application.Util;
 using Data;
 using WebApp.Components;
 
@@ -11,6 +12,7 @@ builder.Services.AddRazorComponents()
 var connectionstring = builder.Configuration.GetConnectionString("PGConnectionString") ?? throw new NullReferenceException("Connectionstring not found.");
 
 //Dependencies
+builder.Services.AddScoped<WebApp.FrontEndEncryption.IEncryptionUtil, WebApp.FrontEndEncryption.EncryptionUtil>();
 DataDependencies.AddDependencies(builder.Services, connectionstring);
 ApplicationDependencies.AddDependencies(builder.Services);
 

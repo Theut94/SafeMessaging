@@ -45,6 +45,14 @@
                 <label for="registerUsername" class="form-label">Username</label>
                 <input id="registerUsername" class="form-control" @bind="_registerModel.Username" />
             </div>
+            <div>
+                <label for="registerFirstName" class="form-label">First Name</label>
+                <input id="registerFirstName" class="form-control" @bind="_registerModel.FirstName"/>
+            </div>
+            <div>
+                <label for="registerLastName" class="form-label">Last Name</label>
+                <input id="registerLastName" class="form-control" @bind="_registerModel.LastName" />
+            </div>
             <div class="mb-3">
                 <label for="registerPassword" class="form-label">Password</label>
                 <input id="registerPassword" type="password" class="form-control" @bind="_registerModel.Password" />
@@ -113,7 +121,7 @@
         }
     }
 
-    private void Register()
+    private async Task Register()
     {
         if (_registerModel.Password != _registerModel.ConfirmPassword)
         {
@@ -124,17 +132,12 @@
         var salt = EncryptionUtil.GetSalt();
         var encryptedPass = EncryptionUtil.HashPassword(_registerModel.Password, salt);
 
+        var publickey = " ";
+        await UserService.Register(_registerModel.Username, encryptedPass,_registerModel.FirstName, _registerModel.LastName,publickey);
 
-        var User = UserService.Register(_registerModel.Username, encryptedPass);
-        if (User != null)
-        {
-            RegisterErrorMessage = "Email already in use.";
-        }
-        else
-        {
-            RegisterErrorMessage = "Registration successful! Please log in.";
-            IsLoginVisible = true;
-        }
+        RegisterErrorMessage = "Registration successful! Please log in.";
+        IsLoginVisible = true;
+
     }
 
     private class LoginModel
@@ -147,5 +150,7 @@
         public string Username { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

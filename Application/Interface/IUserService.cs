@@ -17,6 +17,6 @@ namespace Application.Interface
         public Task<User> RemoveFriend(User user, User friend);
 
         public Task<User> Login(string username, byte[] password);
-        public Task<User> Register(string username, byte[] password);
+        public Task Register(string username, byte[] password, string firstName, string lastName, string PublicKey);
     }
 }
