@@ -128,7 +128,7 @@
         var User = UserService.Register(_registerModel.Username, encryptedPass);
         if (User != null)
         {
-            RegisterErrorMessage = "User already exists.";
+            RegisterErrorMessage = "Email already in use.";
         }
         else
         {
