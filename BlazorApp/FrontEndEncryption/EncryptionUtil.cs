@@ -20,7 +20,7 @@ namespace WebApp.FrontEndEncryption
             return Rfc2898DeriveBytes.Pbkdf2(
                         Encoding.UTF8.GetBytes(password),
                         salt,
-                        iterations: 600_000,
+                        iterations: 600,
                         hashAlgorithm: HashAlgorithmName.SHA256,
                         outputLength: 256 / 8
                     );

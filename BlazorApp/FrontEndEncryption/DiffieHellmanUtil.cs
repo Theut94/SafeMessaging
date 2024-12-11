@@ -7,33 +7,54 @@ namespace WebApp.FrontEndEncryption
         public byte[] GetCommonSecret(byte[] OtherPublicKey, byte[] MyPrivateKey)
         {
             byte[] sharedSecret;
-            using (ECDiffieHellmanCng user = new ECDiffieHellmanCng(CngKey.Import(MyPrivateKey, CngKeyBlobFormat.EccPrivateBlob)))
+            // Step 1: Extract the X and Y components from the public key
+            byte[] keyX = new byte[OtherPublicKey.Length / 2];
+            byte[] keyY = new byte[keyX.Length];
+
+            Buffer.BlockCopy(OtherPublicKey, 0, keyX, 0, keyX.Length);
+            Buffer.BlockCopy(OtherPublicKey, keyX.Length, keyY, 0, keyY.Length);
+
+            // Step 2: Create the ECParameters with the curve and public key components (X and Y)
+            ECParameters parameters = new ECParameters
             {
-                user.KeyDerivationFunction = ECDiffieHellmanKeyDerivationFunction.Hash;
-                user.HashAlgorithm = CngAlgorithm.Sha256;
+                Curve = ECCurve.NamedCurves.nistP256,  // Specify the curve
+                Q =
+                {
+                    X = keyX,
+                    Y = keyY
+                }
+            };
+            // Import the private key from the byte array
+            using (ECDiffieHellman user = ECDiffieHellman.Create())
+            {
+                // Set the private key
+                user.ImportECPrivateKey(MyPrivateKey, out _);
 
                 // Import the public key from the other party
-                using (ECDiffieHellmanPublicKey otherPartyPublicKey = ECDiffieHellmanCngPublicKey.FromByteArray(OtherPublicKey, CngKeyBlobFormat.EccPublicBlob))
+                using (ECDiffieHellmanPublicKey otherPartyPublicKey = ECDiffieHellman.Create(parameters).PublicKey)
                 {
                     // Derive the shared secret
                     sharedSecret = user.DeriveKeyMaterial(otherPartyPublicKey);
                 }
             }
+
             return sharedSecret;
         }
 
         public Dictionary<ECDHKey, byte[]> GetKeys()
         {
-            Dictionary <ECDHKey, byte[]> keyValuePairs = new Dictionary <ECDHKey, byte[] >();
-            using (ECDiffieHellmanCng user = new ECDiffieHellmanCng())
+            Dictionary<ECDHKey, byte[]> keyValuePairs = new Dictionary<ECDHKey, byte[]>();
+
+            // Create a new ECDiffieHellman instance
+            using (ECDiffieHellman user = ECDiffieHellman.Create())
             {
-                user.KeyDerivationFunction = ECDiffieHellmanKeyDerivationFunction.Hash;
-                user.HashAlgorithm = CngAlgorithm.Sha256;
+                // Export the private key
+                keyValuePairs.Add(ECDHKey.Private, user.ExportECPrivateKey());
 
-                keyValuePairs.Add(ECDHKey.Private, user.Key.Export(CngKeyBlobFormat.EccPrivateBlob));
-
-                keyValuePairs.Add(ECDHKey.Public, user.Key.Export(CngKeyBlobFormat.EccPublicBlob));
+                // Export the public key
+                keyValuePairs.Add(ECDHKey.Public, user.ExportSubjectPublicKeyInfo());
             }
+
             return keyValuePairs;
         }
 

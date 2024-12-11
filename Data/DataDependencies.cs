@@ -17,7 +17,7 @@ namespace Data
     {
         public static void AddDependencies(IServiceCollection services, string connectionstring)
         {
-            services.AddDbContextFactory<Context>(opt => opt.UseNpgsql(connectionstring));
+            services.AddDbContext<Context>(opt => opt.UseNpgsql(connectionstring));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUserRepository, UserRepository>();
 
