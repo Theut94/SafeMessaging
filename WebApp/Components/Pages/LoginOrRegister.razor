@@ -1,8 +1,10 @@
 ﻿@page "/Login"
 @rendermode InteractiveServer
 @using Application.Interface
+@using Domain.Models.DTO
 @using WebApp.FrontEndEncryption
 @inject IUserService UserService
+@inject IDiffieHellmanUtil DiffieHellmanUtil
 @inject NavigationManager NavigationManager
 @inject IEncryptionUtil EncryptionUtil
 
@@ -55,11 +57,11 @@
             </div>
             <div class="mb-3">
                 <label for="registerPassword" class="form-label">Password</label>
-                <input id="registerPassword" type="password" class="form-control" @bind="_registerModel.Password" />
+                <input id="registerPassword" type="password" class="form-control" @bind="Password" />
             </div>
             <div class="mb-3">
                 <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input id="confirmPassword" type="password" class="form-control" @bind="_registerModel.ConfirmPassword" />
+                <input id="confirmPassword" type="password" class="form-control" @bind="ConfirmPassword" />
             </div>
             <div class="d-grid">
                 <button class="btn btn-success" @onclick="Register">Register</button>
@@ -82,9 +84,12 @@
 
     private string? LoginErrorMessage;
 
-    private RegisterModel _registerModel = new();
+    private RegisterUserDTO _registerModel = new();
 
     private string? RegisterErrorMessage;
+
+    private string Password;
+    private string ConfirmPassword;
 
     protected override async Task OnInitializedAsync()
     {
@@ -123,17 +128,17 @@
 
     private async Task Register()
     {
-        if (_registerModel.Password != _registerModel.ConfirmPassword)
+        if (Password != ConfirmPassword)
         {
             RegisterErrorMessage = "Passwords do not match.";
             return;
         }
 
         var salt = EncryptionUtil.GetSalt();
-        var encryptedPass = EncryptionUtil.HashPassword(_registerModel.Password, salt);
-
-        var publickey = " ";
-        await UserService.Register(_registerModel.Username, encryptedPass,_registerModel.FirstName, _registerModel.LastName,publickey);
+        var encryptedPass = EncryptionUtil.HashPassword(Password, salt);
+        var keyDictionary = DiffieHellmanUtil.GetKeys();
+        var publickey = keyDictionary[ECDHKey.Public];
+        await UserService.Register(_registerModel);
 
         RegisterErrorMessage = "Registration successful! Please log in.";
         IsLoginVisible = true;
@@ -145,12 +150,5 @@
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }
-    private class RegisterModel
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-    }
+
 }

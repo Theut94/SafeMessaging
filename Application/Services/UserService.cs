@@ -2,6 +2,7 @@
 using Application.Util;
 using Data.Repo.Interface;
 using Domain.Models;
+using Domain.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,26 +82,26 @@ namespace Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task Register(string username, byte[] password, string firstName, string lastName, string PublicKey)
+        public async Task Register(RegisterUserDTO registerUserDTO)
         {
-           var user = await _repo.GetUserByEmail(username);
-           if(username == null)
+           var user = await _repo.GetUserByEmail(registerUserDTO.Username);
+           if(user == null)
            {
                 var salt = _encryptionUtil.GetSalt();
-                var hashedPassword = _encryptionUtil.HashPassword(Encoding.UTF8.GetString(password), salt);
+                var hashedPassword = _encryptionUtil.HashPassword(Encoding.UTF8.GetString(registerUserDTO.Password), salt);
                 var userToCreate = new User()
                 {
-                    FirstName = firstName,
-                    LastName = lastName,
+                    FirstName = registerUserDTO.FirstName,
+                    LastName = registerUserDTO.LastName,
                     Credentials = new Credentials()
                     {
                         Password = hashedPassword,
                         Salt = salt,
-                        UserName = username
+                        UserName = registerUserDTO.Username
 
                     },
                     GUID = Guid.NewGuid().ToString(),
-                    PublickKey = PublicKey
+                    PublickKey = registerUserDTO.PublicKey
 
                 };
 

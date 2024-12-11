@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -17,6 +18,6 @@ namespace Application.Interface
         public Task<User> RemoveFriend(User user, User friend);
 
         public Task<User> Login(string username, byte[] password);
-        public Task Register(string username, byte[] password, string firstName, string lastName, string PublicKey);
+        public Task Register(RegisterUserDTO registerUserDTO);
     }
 }

@@ -61,6 +61,7 @@ namespace Data.Repo.Context
                 entity.HasKey(m => m.GUID);
                 entity.Property(m => m.GUID).IsRequired();
                 entity.Property(m => m.Text).IsRequired(false);
+                entity.Property(m => m.IV).IsRequired(false);
                 entity.Property(m => m.Sender).IsRequired();
             });
         }
