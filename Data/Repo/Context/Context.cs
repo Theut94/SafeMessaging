@@ -14,10 +14,8 @@ namespace Data.Repo.Context
         public required DbSet<Message> Messages { get; set; }
         public required DbSet<User> Users { get; set; }
         public required DbSet<Credentials> Credentials { get; set; }
-        public Context(DbContextOptions<Context> options) :base(options)
-        {
-            this.Database.EnsureCreated();
-        }
+
+        public Context(DbContextOptions opt) :base(opt) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
