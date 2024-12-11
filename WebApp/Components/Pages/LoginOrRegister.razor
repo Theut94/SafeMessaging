@@ -134,8 +134,8 @@
             return;
         }
 
-        var salt = EncryptionUtil.GetSalt();
-        var encryptedPass = EncryptionUtil.HashPassword(Password, salt);
+        _registerModel.Salt = EncryptionUtil.GetSalt();
+        var encryptedPass = EncryptionUtil.HashPassword(Password, _registerModel.Salt);
         var keyDictionary = DiffieHellmanUtil.GetKeys();
         var publickey = keyDictionary[ECDHKey.Public];
         await UserService.Register(_registerModel);

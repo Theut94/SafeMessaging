@@ -87,8 +87,7 @@ namespace Application.Services
            var user = await _repo.GetUserByEmail(registerUserDTO.Username);
            if(user == null)
            {
-                var salt = _encryptionUtil.GetSalt();
-                var hashedPassword = _encryptionUtil.HashPassword(Encoding.UTF8.GetString(registerUserDTO.Password), salt);
+                var hashedPassword = _encryptionUtil.HashPassword(Encoding.UTF8.GetString(registerUserDTO.Password), registerUserDTO.Salt);
                 var userToCreate = new User()
                 {
                     FirstName = registerUserDTO.FirstName,
@@ -96,18 +95,15 @@ namespace Application.Services
                     Credentials = new Credentials()
                     {
                         Password = hashedPassword,
-                        Salt = salt,
+                        Salt = registerUserDTO.Salt,
                         UserName = registerUserDTO.Username
-
                     },
                     GUID = Guid.NewGuid().ToString(),
                     PublickKey = registerUserDTO.PublicKey
 
                 };
-
                 await _repo.AddAsync(userToCreate);
            }
-
         }
     }
 }

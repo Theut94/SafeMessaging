@@ -13,5 +13,6 @@ namespace Domain.Models.DTO
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public byte[] PublicKey { get; set; }
+        public byte[] Salt { get; set; }
     }
 }
