@@ -1,10 +1,12 @@
 ﻿@page "/Login"
-@rendermode InteractiveServer
+@rendermode RenderMode.InteractiveWebAssembly
 @using Application.Interface
 @using Domain.Models.DTO
-
+@using WebApp.FrontEndEncryption
 @inject IUserService UserService
+@inject IDiffieHellmanUtil DiffieHellmanUtil
 @inject NavigationManager NavigationManager
+@inject IEncryptionUtil EncryptionUtil
 
 
 <div class="container mt-4">
@@ -132,64 +134,15 @@
             return;
         }
 
-        _registerModel.Salt = GetSalt();
-        var encryptedPass = HashPassword(Password, _registerModel.Salt);
-        var keyDictionary = GetKeys();
+        _registerModel.Salt = EncryptionUtil.GetSalt();
+        var encryptedPass = EncryptionUtil.HashPassword(Password, _registerModel.Salt);
+        var keyDictionary = DiffieHellmanUtil.GetKeys();
         var publickey = keyDictionary[ECDHKey.Public];
         await UserService.Register(_registerModel);
 
         RegisterErrorMessage = "Registration successful! Please log in.";
         IsLoginVisible = true;
 
-    }
-
-    public byte[] GetCommonSecret(byte[] OtherPublicKey, byte[] MyPrivateKey)
-    {
-        byte[] sharedSecret;
-        using (ECDiffieHellmanCng user = new ECDiffieHellmanCng(CngKey.Import(MyPrivateKey, CngKeyBlobFormat.EccPrivateBlob)))
-        {
-            user.KeyDerivationFunction = ECDiffieHellmanKeyDerivationFunction.Hash;
-            user.HashAlgorithm = CngAlgorithm.Sha256;
-
-            // Import the public key from the other party
-            using (ECDiffieHellmanPublicKey otherPartyPublicKey = ECDiffieHellmanCngPublicKey.FromByteArray(OtherPublicKey, CngKeyBlobFormat.EccPublicBlob))
-            {
-                // Derive the shared secret
-                sharedSecret = user.DeriveKeyMaterial(otherPartyPublicKey);
-            }
-        }
-        return sharedSecret;
-    }
-
-    public Dictionary<ECDHKey, byte[]> GetKeys()
-    {
-        Dictionary<ECDHKey, byte[]> keyValuePairs = new Dictionary<ECDHKey, byte[]>();
-        using (ECDiffieHellmanCng user = new ECDiffieHellmanCng())
-        {
-            user.KeyDerivationFunction = ECDiffieHellmanKeyDerivationFunction.Hash;
-            user.HashAlgorithm = CngAlgorithm.Sha256;
-
-            keyValuePairs.Add(ECDHKey.Private, user.Key.Export(CngKeyBlobFormat.EccPrivateBlob));
-
-            keyValuePairs.Add(ECDHKey.Public, user.Key.Export(CngKeyBlobFormat.EccPublicBlob));
-        }
-        return keyValuePairs;
-    }
-
-    public byte[] HashPassword(string password, byte[] salt)
-    {
-        return Rfc2898DeriveBytes.Pbkdf2(
-                    Encoding.UTF8.GetBytes(password),
-                    salt,
-                    iterations: 600_000,
-                    hashAlgorithm: HashAlgorithmName.SHA256,
-                    outputLength: 256 / 8
-                );
-    }
-
-    public byte[] GetSalt()
-    {
-        return Convert.FromBase64String(Crypto.GenerateSalt(32));
     }
 
     private class LoginModel
