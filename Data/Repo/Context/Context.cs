@@ -28,7 +28,6 @@ namespace Data.Repo.Context
                 entity.Property(u => u.GUID).IsRequired();
                 entity.Property(u => u.FirstName).IsRequired();
                 entity.Property(u => u.LastName).IsRequired();
-                entity.Property(u => u.Credentials).IsRequired();
 
                 entity.HasMany(u => u.FriendList)
                       .WithMany();
@@ -41,6 +40,7 @@ namespace Data.Repo.Context
 
             modelBuilder.Entity<Credentials>(entity =>
             {
+                entity.HasKey(c => c.UserName);
                 entity.Property(c => c.Password).IsRequired();
                 entity.Property(c => c.UserName).IsRequired();
             });
