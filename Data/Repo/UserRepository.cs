@@ -1,5 +1,6 @@
 ﻿using Data.Repo.Interface;
 using Domain.Models;
+using Domain.Models.DTO;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,37 +18,47 @@ namespace Data.Repo
         {
             _dbContextFactory = dbContextFactory;
         }
-        public Task AddAsync(User entity)
+        public async Task<User?> GetByIdAsync(string Guid)
         {
-            throw new NotImplementedException();
+            await using var context = _dbContextFactory.CreateDbContext();
+
+            return await context.Users.FindAsync(Guid);
         }
 
-        public Task DeleteAsync(User entity)
+        public async Task<IEnumerable<User>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            await using var context = _dbContextFactory.CreateDbContext();
+            return await context.Users.ToListAsync();
         }
 
-        public Task<IEnumerable<User>> GetAllAsync()
+        public async Task AddAsync(User entity)
         {
-            throw new NotImplementedException();
+            await using var context = _dbContextFactory.CreateDbContext();
+            context.Users.Add(entity);
+            await context.SaveChangesAsync();
         }
 
-        public Task<User?> GetByIdAsync(string GUID)
+        public async Task UpdateAsync(User entity)
         {
-            throw new NotImplementedException();
+            await using var context = _dbContextFactory.CreateDbContext();
+            context.Users.Update(entity);
+            await context.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(User entity)
+        {
+            await using var context = _dbContextFactory.CreateDbContext();
+            context.Users.Remove(entity);
+            await context.SaveChangesAsync();
+        }
         public async Task<User?> GetUserByEmail(string username)
         {
             username = username.ToLower();
 
             using var context = await _dbContextFactory.CreateDbContextAsync();
-            return context.Set<User>().Where(user => user.Credentials.UserName == username).FirstOrDefault();
+            return context.Users.Where(user => user.Credentials.UserName == username).FirstOrDefault();
         }
 
-        public Task UpdateAsync(User entity)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

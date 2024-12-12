@@ -1,6 +1,7 @@
 ﻿using Application.Interface;
 using Data.Repo.Interface;
 using Domain.Models;
+using Domain.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace Application.Services
             return Task.FromResult(chat);
         }
 
+        public async Task UpdateChat(Chat chat)
+        {
+            await _repo.UpdateAsync(chat);
+        }
+
         public Task<Chat> DeleteChat(User user, Chat chat)
         {
             var chatToDelete = user.Chats.FirstOrDefault(x => x.GUID == chat.GUID);
@@ -48,7 +54,7 @@ namespace Application.Services
             return Task.FromResult(chat);
         }
 
-        public Task<List<Chat>> GetChats(User user)
+        public Task<List<Chat>> GetChats(UserDTO user)
         {
             return Task.FromResult(user.Chats);
         }

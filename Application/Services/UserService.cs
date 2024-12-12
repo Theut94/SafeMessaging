@@ -77,9 +77,19 @@ namespace Application.Services
             return Task.FromResult(user);
         }
 
-        public Task<User> Login(string username, byte[] password)
+        public async Task<User?> Login(LoginUserDTO loginUserDTO)
         {
-            throw new NotImplementedException();
+            var user = await _repo.GetUserByEmail(loginUserDTO.Username);
+            if (user == null)
+            {
+                var hashedPassword = _encryptionUtil.HashPassword(Encoding.UTF8.GetString(loginUserDTO.Password), loginUserDTO.Salt);
+                if(hashedPassword == user.Credentials.Password)
+                {
+                    return user;
+                }                
+            }            
+            return null;
+            
         }
 
         public async Task Register(RegisterUserDTO registerUserDTO)

@@ -1,6 +1,7 @@
 ﻿using Application.Interface;
 using Data.Repo.Interface;
 using Domain.Models;
+using Domain.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +24,15 @@ namespace Application.Services
             return Task.FromResult(chat.Messages ?? new List<Message>());
         }
 
-        public Task<Message> SendMessage(Chat chat, Message message)
+        public Task<Message> AddMessage(Chat chat, MessageDTO messageDTO)
         {
+            var message = new Message() 
+            { 
+                GUID = Guid.NewGuid().ToString(), 
+                IV = messageDTO.IV, 
+                Sender = messageDTO.Sender, 
+                Text = messageDTO.Text 
+            };
             if (chat.Messages == null)
             {
                 chat.Messages = new List<Message>();

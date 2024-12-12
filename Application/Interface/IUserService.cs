@@ -17,7 +17,7 @@ namespace Application.Interface
         public Task<User> AddFriend(User user, User friend);
         public Task<User> RemoveFriend(User user, User friend);
 
-        public Task<User> Login(string username, byte[] password);
+        public Task<User> Login(LoginUserDTO registerUserDTO);
         public Task Register(RegisterUserDTO registerUserDTO);
     }
 }
