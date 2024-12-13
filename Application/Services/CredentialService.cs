@@ -11,9 +11,9 @@ namespace Application.Services
 {
     public class CredentialService : ICredentialService
     {
-        private readonly IRepository<Credentials> _repo;
+        private readonly ICredentialRepository _repo;
 
-        public CredentialService(IRepository<Credentials> repo)
+        public CredentialService(ICredentialRepository repo)
         {
             _repo = repo;
         }

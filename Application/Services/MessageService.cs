@@ -12,9 +12,9 @@ namespace Application.Services
 {
     public class MessageService : IMessageService
     {
-        private IRepository<Message> _repo;
+        private IMessageRepository _repo;
 
-        public MessageService(IRepository<Message> repo)
+        public MessageService(IMessageRepository repo)
         {
             _repo = repo;
         }

@@ -91,6 +91,11 @@ namespace Application.Services
             return null;
             
         }
+        public async Task<List<User>> GetAllUsers()
+        {
+            var users = await _repo.GetAllAsync();
+            return users.ToList();
+        }
 
         public async Task Register(RegisterUserDTO registerUserDTO)
         {

@@ -14,6 +14,7 @@ namespace Application
     {
         public static void AddDependencies(IServiceCollection services)
         {
+            services.AddScoped<IJWTService, JWTService>();
             services.AddScoped<IChatService, ChatService>();
             services.AddScoped<ICredentialService, CredentialService>();
             services.AddScoped<IMessageService, MessageService>();

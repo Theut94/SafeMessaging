@@ -1,6 +1,7 @@
 ﻿using Application.Interface;
 using Domain.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,8 @@ namespace Application.Services
             // Define user claims for the token
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, "user_id_123"), // Unique identifier for the user
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // Token ID
-                new Claim("UserGUID",user.GUID)
+                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, user.GUID), // Unique identifier for the user
+                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // Token ID
             };
 
             // Create signing credentials using a symmetric security key

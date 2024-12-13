@@ -12,8 +12,8 @@ namespace Application.Services
 {
     public class ChatService : IChatService
     {
-        private readonly IRepository<Chat> _repo;
-        public ChatService(IRepository<Chat> repo)
+        private readonly IChatRepository _repo;
+        public ChatService(IChatRepository repo)
         {
             _repo = repo;
         }
