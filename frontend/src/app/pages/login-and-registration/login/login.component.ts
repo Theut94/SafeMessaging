@@ -27,7 +27,6 @@ export default class LoginComponent {
 
   async onSubmit() {
     this.loading = true;
-    // this.keyService.testPublicKey();
     const salt = this.encryptionService.generateSalt();
     const hashedPassword = await this.encryptionService.hashPassword(
       this.password,

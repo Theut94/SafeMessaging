@@ -41,7 +41,7 @@ export class KeyService {
   }
 
   async exportPublicKey(publicKey: CryptoKey): Promise<string> {
-    const exportedKey = await window.crypto.subtle.exportKey('raw', publicKey);
+    const exportedKey = await window.crypto.subtle.exportKey('spki', publicKey);
     return this.arrayBufferToBase64(exportedKey);
   }
 
@@ -49,7 +49,7 @@ export class KeyService {
     const publicKeyBuffer = this.base64ToArrayBuffer(base64PublicKey);
 
     return window.crypto.subtle.importKey(
-      'raw',
+      'spki',
       publicKeyBuffer,
       { name: 'ECDH', namedCurve: 'P-256' },
       true,
@@ -96,40 +96,5 @@ export class KeyService {
       uint8Array[i] = binaryString.charCodeAt(i);
     }
     return arrayBuffer;
-  }
-
-  testPublicKey() {
-    (async () => {
-      // create key pair
-      let keyPair = await window.crypto.subtle.generateKey(
-        { name: 'ECDH', namedCurve: 'P-256' },
-        true,
-        ['deriveKey']
-      );
-      console.log('keyPair:', keyPair);
-
-      // export raw public key (uncompressed format)
-      let publicKey = await window.crypto.subtle.exportKey(
-        'raw',
-        keyPair.publicKey
-      );
-      console.log('publicKey:', ab2hex(publicKey));
-
-      // import raw public key (uncompressed format)
-      let importedPublicKey = await window.crypto.subtle.importKey(
-        'raw',
-        publicKey, // valid raw public key in uncompressed format
-        { name: 'ECDH', namedCurve: 'P-256' },
-        false,
-        [] // empty list
-      );
-      console.log('importedPublicKey:', importedPublicKey);
-
-      function ab2hex(ab: any) {
-        return Array.prototype.map
-          .call(new Uint8Array(ab), (x) => ('00' + x.toString(16)).slice(-2))
-          .join('');
-      }
-    })();
   }
 }
