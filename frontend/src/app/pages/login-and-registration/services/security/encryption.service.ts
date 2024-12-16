@@ -54,12 +54,11 @@ export class EncryptionService {
     return window.crypto.getRandomValues(new Uint8Array(16)).toString();
   }
 
-  encryptString(iv: string, hash: string, stringToBeEncrypted: string): string {
-    // Create a key using the hash
-    const key = CryptoJS.enc.Hex.parse(hash); // Convert hash string to WordArray
-    const ivWordArray = CryptoJS.enc.Hex.parse(iv); // Convert IV from hex string to WordArray
+  encryptKey(iv: string, hash: string, stringToBeEncrypted: string): string {
+    // Parse input because we're not interested in storing word arrays.
+    const key = CryptoJS.enc.Hex.parse(hash);
+    const ivWordArray = CryptoJS.enc.Hex.parse(iv);
 
-    // Encrypt the data
     const encrypted = CryptoJS.AES.encrypt(stringToBeEncrypted, key, {
       iv: ivWordArray,
       mode: CryptoJS.mode.CBC,
@@ -69,11 +68,9 @@ export class EncryptionService {
     return encrypted.toString(); // Returns the encrypted data as a string
   }
 
-  // Decrypt Function
-  decryptString(iv: string, hash: string, encryptedString: string): string {
-    // Create a key using the hash
-    const key = CryptoJS.enc.Hex.parse(hash); // Convert hash string to WordArray
-    const ivWordArray = CryptoJS.enc.Hex.parse(iv); // Convert IV from hex string to WordArray
+  decryptKey(iv: string, hash: string, encryptedString: string): string {
+    const key = CryptoJS.enc.Hex.parse(hash);
+    const ivWordArray = CryptoJS.enc.Hex.parse(iv);
 
     // Decrypt the data
     const decrypted = CryptoJS.AES.decrypt(encryptedString, key, {
@@ -83,6 +80,45 @@ export class EncryptionService {
     });
 
     // Convert decrypted data back to string
-    return decrypted.toString(CryptoJS.enc.Utf8); // Returns the decrypted data as a string
+    return decrypted.toString(CryptoJS.enc.Utf8);
+  }
+
+  // We use different functions for encrypting keys and messages because the shared secret (key) is in a different format.
+  encryptMessage(
+    iv: string,
+    sharedSecret: string,
+    stringToBeEncrypted: string
+  ): string {
+    // Create a key using the sharedSecret with base 64 in this case because that is what we we change the shared secret to
+    const key = CryptoJS.enc.Base64.parse(sharedSecret);
+    const ivWordArray = CryptoJS.enc.Hex.parse(iv);
+
+    const encrypted = CryptoJS.AES.encrypt(stringToBeEncrypted, key, {
+      iv: ivWordArray,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    });
+
+    return encrypted.toString();
+  }
+
+  decryptMessage(
+    iv: string,
+    sharedSecret: string,
+    encryptedString: string
+  ): string {
+    // Create a key using the sharedSecret with base 64 in this case because that is what we we change the shared secret to
+    const key = CryptoJS.enc.Base64.parse(sharedSecret);
+    const ivWordArray = CryptoJS.enc.Hex.parse(iv);
+
+    // Decrypt the data
+    const decrypted = CryptoJS.AES.decrypt(encryptedString, key, {
+      iv: ivWordArray,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    });
+
+    // Convert decrypted data back to string
+    return decrypted.toString(CryptoJS.enc.Utf8);
   }
 }

@@ -23,11 +23,6 @@ export class KeyService {
     privateKey: CryptoKey,
     otherPublicKey: CryptoKey
   ): Promise<ArrayBuffer> {
-    // const algorithm = {
-    //   name: 'ECDH',
-    //   namedCurve: 'P-256',
-    // };
-
     const sharedSecret = await window.crypto.subtle.deriveBits(
       {
         name: 'ECDH',
@@ -78,6 +73,7 @@ export class KeyService {
     );
   }
 
+  // Converts array buffer to base 64 string, which we use as a key when we encrypt and decrypt.
   arrayBufferToBase64(buffer: ArrayBuffer): string {
     const uint8Array = new Uint8Array(buffer);
     let binary = '';
