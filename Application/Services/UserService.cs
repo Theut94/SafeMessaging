@@ -16,7 +16,7 @@ namespace Application.Services
 
         private IUserRepository _repo;
         private IEncryptionUtil _encryptionUtil;
-        
+
         public UserService(IUserRepository repo, IEncryptionUtil encryptionUtil)
         {
             _repo = repo;
@@ -80,16 +80,15 @@ namespace Application.Services
         public async Task<User?> Login(LoginUserDTO loginUserDTO)
         {
             var user = await _repo.GetUserByEmail(loginUserDTO.Username);
-            if (user == null)
-            {
-                var hashedPassword = _encryptionUtil.HashPassword(Encoding.UTF8.GetString(loginUserDTO.Password), loginUserDTO.Salt);
-                if(hashedPassword == user.Credentials.Password)
+            var hashedPassword = _encryptionUtil.HashPassword(loginUserDTO.Password, Encoding.UTF8.GetBytes(loginUserDTO.Salt));
+            if (user != null) 
+            { 
+                if (Encoding.UTF8.GetString(hashedPassword) == user.Credentials.Password)
                 {
                     return user;
-                }                
-            }            
+                }
+            }        
             return null;
-            
         }
         public async Task<List<User>> GetAllUsers()
         {
@@ -102,7 +101,7 @@ namespace Application.Services
            var user = await _repo.GetUserByEmail(registerUserDTO.Username);
            if(user == null)
            {
-                var hashedPassword = _encryptionUtil.HashPassword(Encoding.UTF8.GetString(registerUserDTO.Password), registerUserDTO.Salt);
+                var hashedPassword = Encoding.UTF8.GetString(_encryptionUtil.HashPassword(registerUserDTO.Password, Encoding.UTF8.GetBytes(registerUserDTO.Salt)));
                 var userToCreate = new User()
                 {
                     FirstName = registerUserDTO.FirstName,

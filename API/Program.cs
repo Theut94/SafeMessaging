@@ -1,6 +1,8 @@
 using Application;
 using Application.Util;
 using Data;
+using Data.Repo.Context;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var context =  scope.ServiceProvider.GetService<IDbContextFactory<Context>>().CreateDbContext();
+    context.Database.EnsureCreated();
+}
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

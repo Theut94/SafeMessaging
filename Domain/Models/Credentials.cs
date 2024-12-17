@@ -8,8 +8,8 @@ namespace Domain.Models
 {
     public class Credentials
     {
-        required public byte[] Password { get; set; }
+        required public string Password { get; set; }
         required public string UserName { get; set; } // email
-        required public byte[] Salt { get; set; }
+        required public string Salt { get; set; }
     }
 }

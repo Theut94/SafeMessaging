@@ -9,10 +9,10 @@ namespace Domain.Models.DTO
     public class RegisterUserDTO
     {
         public string Username { get; set; }
-        public byte[] Password { get; set; }
+        public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public byte[] PublicKey { get; set; }
-        public byte[] Salt { get; set; }
+        public string PublicKey { get; set; }
+        public string Salt { get; set; }
     }
 }

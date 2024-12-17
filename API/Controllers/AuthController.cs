@@ -11,9 +11,10 @@ namespace API.Controllers
         private IJWTService _jwtService;
         private IUserService _userService;
         
-        public AuthController(IJWTService jwtService)
+        public AuthController(IJWTService jwtService, IUserService userService)
         {
             _jwtService = jwtService;
+            _userService = userService;
         }
 
         [HttpPost("Login")]

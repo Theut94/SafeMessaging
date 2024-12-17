@@ -11,7 +11,7 @@ namespace Domain.Models
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public required string GUID { get; set; }
-        public required byte[] PublickKey { get; set; }
+        public required string PublickKey { get; set; }
         public List<User> FriendList { get; set; } = new List<User>();
         public List<Chat> Chats { get; set; } = new List<Chat>();
         public required Credentials Credentials { get; set; }

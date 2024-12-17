@@ -9,8 +9,8 @@ namespace Domain.Models.DTO
     public class LoginUserDTO
     {
         public string Username { get; set; }
-        public byte[] Password { get; set; }
-        public byte[] Salt { get; set; }
+        public string Password { get; set; }
+        public string Salt { get; set; }
 
     }
 }

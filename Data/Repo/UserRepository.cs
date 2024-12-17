@@ -56,7 +56,7 @@ namespace Data.Repo
             username = username.ToLower();
 
             using var context = await _dbContextFactory.CreateDbContextAsync();
-            return context.Users.Where(user => user.Credentials.UserName == username).FirstOrDefault();
+            return context.Users.Where(user => user.Credentials.UserName == username).Include(u => u.Credentials).FirstOrDefault();
         }
 
 
