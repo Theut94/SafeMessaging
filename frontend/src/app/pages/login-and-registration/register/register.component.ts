@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EncryptionService } from '../services/security/encryption.service';
+import { KeyService } from '../services/security/key.service';
+import { IRegisterUserDTO } from '../services/http/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -30,6 +32,8 @@ export default class RegisterComponent implements OnDestroy {
   destroy$ = new Subject<void>();
   private _snackBar = inject(MatSnackBar);
 
+  firstName: string = '';
+  lastName: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
@@ -46,12 +50,13 @@ export default class RegisterComponent implements OnDestroy {
   lowercaseCriteria = false;
   specialCharCriteria = false;
 
-  showPasswordTips = true;
+  showPasswordTips = false;
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private encryptionService: EncryptionService
+    private encryptionService: EncryptionService,
+    private keyServicve: KeyService
   ) {}
 
   ngOnDestroy() {
@@ -96,7 +101,7 @@ export default class RegisterComponent implements OnDestroy {
         this.passwordStrength = 'Strong';
         break;
       case 5:
-        this.passwordStrength = 'Very Strong';
+        this.passwordStrength = 'Very Strong'; // over 9000
         break;
       default:
         this.passwordStrength = '';
@@ -106,22 +111,49 @@ export default class RegisterComponent implements OnDestroy {
   async onSubmit() {
     this.loading = true;
 
+    // we generate a salt to make sure the hashed password is unique from other passwords that are the exact same.
     const salt = this.encryptionService.generateSalt();
-    console.log('salt: ', salt);
-    console.log('salt.length: ', salt.length);
-
-    localStorage.setItem('userSalt', salt);
-
     const hashedPassword = await this.encryptionService.hashPassword(
       this.password,
       salt
     );
 
-    console.log('hashedPassword: ', hashedPassword);
-    console.log('hashedPassword.length: ', hashedPassword.length);
+    const iv = this.encryptionService.generateIV();
+
+    // this generate MY private key and MY public key. The privateKey is kept encrypted locally.
+    // the public key is sent to the server so other users can generate a session key using that and THEIR private key.
+    const keyPair = await this.keyServicve.generateKeyPair();
+
+    // we export the keys to convert them to a base 64 string for easier saving.
+    const privateKey = await this.keyServicve.exportPrivateKey(
+      keyPair.privateKey
+    );
+    const publicKey = await this.keyServicve.exportPublicKey(keyPair.publicKey);
+
+    const encryptedPrivateKey = this.encryptionService.encryptKey(
+      iv,
+      hashedPassword,
+      privateKey
+    );
+
+    // we save the salt, to make sure the password becomes the same unique hashed value every time that specific user hashes it.
+    // same for the IV for encyption when we encrypt the private key. Also we need the IV for decryption.
+    // the privateKey is stored locally as nobody else will need it, this is used in DH session key generation.
+    localStorage.setItem('salt', salt);
+    localStorage.setItem('iv', iv);
+    localStorage.setItem('privateKey', encryptedPrivateKey);
+
+    const userDTO: IRegisterUserDTO = {
+      username: this.email,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      password: hashedPassword,
+      publicKey: publicKey,
+      salt: salt,
+    };
 
     this.authService
-      .register(this.email, hashedPassword, salt)
+      .register(userDTO)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (response) => {
@@ -146,6 +178,8 @@ export default class RegisterComponent implements OnDestroy {
 
   get getFormStatus(): boolean {
     return (
+      this.firstName !== '' &&
+      this.lastName !== '' &&
       this.lengthCriteria &&
       this.numberCriteria &&
       this.uppercaseCriteria &&

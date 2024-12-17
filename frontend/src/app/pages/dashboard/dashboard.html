@@ -1,1 +1,49 @@
-<p>dashboard works!</p>
+<mat-drawer-container class="dashboard-container">
+  <!-- Left Sidebar: User List -->
+  <mat-drawer mode="side" opened class="user-list">
+    <h3 class="sidebar-title">Users</h3>
+    <mat-nav-list>
+      <mat-list-item
+        *ngFor="let user of users"
+        (click)="selectUser(user)"
+        class="user-item"
+        [class.selected]="user === selectedUser"
+      >
+        {{ user.firstName + ' ' + user.lastName }}
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <!-- Chat Window -->
+  <div class="chat-window">
+    <ng-container *ngIf="selectedUser; else noUserSelected">
+      <h2 class="chat-title">
+        Chat with {{ selectedUser.firstName + ' ' + selectedUser.lastName }}
+      </h2>
+      <div class="chat-content" *ngFor="let message of messages">
+        <div class="chat-message" [class.mine]="message.sender === 'me'">
+          <span
+            >{{ message.sender === 'me' ? 'You' : selectedUser.firstName + ' ' +
+            selectedUser.lastName }}:</span
+          >
+          <p>{{ message.text }}</p>
+        </div>
+      </div>
+      <!-- Input Field -->
+      <mat-form-field class="message-input" appearance="outline">
+        <mat-label>Type a message</mat-label>
+        <input
+          matInput
+          [(ngModel)]="newMessage"
+          (keyup.enter)="sendMessage()"
+        />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="sendMessage()">
+        Send
+      </button>
+    </ng-container>
+    <ng-template #noUserSelected>
+      <h2 class="chat-placeholder">Select a user to start chatting</h2>
+    </ng-template>
+  </div>
+</mat-drawer-container>

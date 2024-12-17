@@ -7,6 +7,33 @@
       <p *ngIf="registrationErrorText" class="errorText">
         {{ registrationErrorText }}
       </p>
+
+      <div class="form-group">
+        <input
+          type="string"
+          id="firstname"
+          name="firstname"
+          ngModel
+          [(ngModel)]="firstName"
+          required
+          placeholder="First name"
+          class="input-field"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="string"
+          id="lastname"
+          name="lastname"
+          ngModel
+          [(ngModel)]="lastName"
+          required
+          placeholder="Last name"
+          class="input-field"
+        />
+      </div>
+
       <div class="form-group">
         <input
           type="email"
