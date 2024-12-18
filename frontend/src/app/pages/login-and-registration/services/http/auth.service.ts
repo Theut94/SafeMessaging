@@ -9,12 +9,11 @@ import { Observable, of } from 'rxjs';
 export class AuthService {
   private apiUrl = environment.apiUrl;
 
-  // For logging in and registering
   constructor(private http: HttpClient) {}
 
-  register(RegisterUserDTO: IRegisterUserDTO) {
+  register(registerUserDTO: IRegisterUserDTO) {
     return this.http.post(this.apiUrl + '/auth/register', {
-      RegisterUserDTO,
+      ...registerUserDTO,
     });
   }
 

@@ -36,7 +36,6 @@ export default class LoginComponent implements OnDestroy {
   async onSubmit() {
     this.loading = true;
 
-    // Setup
     const salt = localStorage.getItem('salt') || '';
 
     const hashedPassword = await this.encryptionService.hashPassword(

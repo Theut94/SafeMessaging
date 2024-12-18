@@ -65,7 +65,7 @@ export class EncryptionService {
       padding: CryptoJS.pad.Pkcs7,
     });
 
-    return encrypted.toString(); // Returns the encrypted data as a string
+    return encrypted.toString();
   }
 
   decryptKey(iv: string, hash: string, encryptedString: string): string {

@@ -102,7 +102,7 @@ $button-hover-color: darken($primary-color, 10%);
       color: #888;
 
       &:hover {
-        color: #000; // Change color on hover
+        color: #000;
       }
     }
   }
@@ -120,19 +120,19 @@ $button-hover-color: darken($primary-color, 10%);
       border-radius: 4px;
 
       &.weak {
-        background-color: red; // Red for weak
+        background-color: red;
       }
 
       &.moderate {
-        background-color: yellow; // Yellow for moderate
+        background-color: yellow;
       }
 
       &.strong {
-        background-color: orange; // Green for strong
+        background-color: orange;
       }
 
       &.veryStrong {
-        background-color: green; // Blue for very strong
+        background-color: green;
       }
     }
   }
