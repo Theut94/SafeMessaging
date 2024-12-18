@@ -27,7 +27,7 @@ namespace API.Controllers
             }
             var token = _jwtService.CreateTokenWithAttributes(user);
             //CHECK CREDENTIALS THROUGH SERVICE.
-            return Ok(new { token , expiration = DateTime.UtcNow.AddMinutes(30) } );
+            return Ok(new { token , expiration = DateTime.UtcNow.AddMinutes(30)} );
         }
 
         [HttpPost("Register")]

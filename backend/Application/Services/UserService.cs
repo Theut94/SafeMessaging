@@ -33,16 +33,6 @@ namespace Application.Services
             return Task.FromResult(user);
         }
 
-        public Task<User> AddFriend(User user, User friend)
-        {
-
-            if (user.FriendList.Any(x => x.GUID == friend.GUID))
-            {
-                throw new InvalidOperationException("Friend already exists");
-            }
-            user.FriendList.Add(friend);
-            return Task.FromResult(user);
-        }
 
         public Task<User> DeleteUser(User user)
         {
@@ -66,16 +56,6 @@ namespace Application.Services
             return Task.FromResult(user);
         }
 
-        public Task<User> RemoveFriend(User user, User friend)
-        {
-            var friendToRemove = user.FriendList.FirstOrDefault(x => x.GUID == friend.GUID);
-            if (friendToRemove == null)
-            {
-                throw new InvalidOperationException("Friend not found");
-            }
-            user.FriendList.Remove(friendToRemove);
-            return Task.FromResult(user);
-        }
 
         public async Task<User?> Login(LoginUserDTO loginUserDTO)
         {

@@ -12,7 +12,5 @@ namespace Domain.Models.DTO
         public required string LastName { get; set; }
         public required string GUID { get; set; }
         public required string PublickKey { get; set; }
-        public List<User> FriendList { get; set; } = new List<User>();
-        public List<Chat> Chats { get; set; } = new List<Chat>();
     }
 }

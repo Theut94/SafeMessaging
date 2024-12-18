@@ -9,7 +9,7 @@ namespace Data.Repo.Interface
 {
     public interface IChatRepository
     {
-        public Task<Chat> GetByIdAsync(string GUID);
+        public Task<Chat> GetByIdAsync(string userIds);
 
         public Task<IEnumerable<Chat>> GetAllAsync();
 
