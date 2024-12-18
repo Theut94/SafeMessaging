@@ -103,11 +103,11 @@ body {
       color: $text-color;
 
       a {
-        color: $primary-color; // Link color to match the primary color
-        text-decoration: none; // Remove underline
+        color: $primary-color;
+        text-decoration: none;
 
         &:hover {
-          text-decoration: underline; // Optional: underline on hover
+          text-decoration: underline;
         }
       }
     }

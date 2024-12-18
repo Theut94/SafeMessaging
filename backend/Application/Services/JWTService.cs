@@ -23,21 +23,17 @@ namespace Application.Services
         }
         public string CreateTokenWithAttributes(User user)
         {
-            // Define user claims for the token
             var claims = new List<Claim>
             {
                 new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, user.GUID), // Unique identifier for the user
-                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // Token ID
+                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 
-            // Create signing credentials using a symmetric security key
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            // Set the token expiration time
             var expiration = DateTime.UtcNow.AddMinutes(30);
 
-            // Create the JWT token
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
@@ -46,7 +42,6 @@ namespace Application.Services
                 signingCredentials: creds
             );
 
-            // Return the serialized token
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 

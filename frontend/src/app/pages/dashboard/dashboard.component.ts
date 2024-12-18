@@ -47,7 +47,6 @@ export default class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Access the resolved data from the route
     this.route.data.subscribe((data) => {
       this.users = data['dashboardData'];
       if (!this.users || this.users.length === 0) {

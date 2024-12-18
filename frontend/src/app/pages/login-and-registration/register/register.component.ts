@@ -101,7 +101,7 @@ export default class RegisterComponent implements OnDestroy {
         this.passwordStrength = 'Strong';
         break;
       case 5:
-        this.passwordStrength = 'Very Strong'; // over 9000
+        this.passwordStrength = 'Very Strong';
         break;
       default:
         this.passwordStrength = '';
@@ -162,7 +162,7 @@ export default class RegisterComponent implements OnDestroy {
             'An email have been sent to your mail, if you do not already have an account.',
             ' close',
             { duration: 5 * 1000 }
-          ); // Mimic that we have email confirmation
+          );
 
           this.registrationErrorText = '';
           this.router.navigate(['/login']);
