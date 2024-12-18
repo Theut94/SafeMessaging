@@ -19,11 +19,7 @@ namespace API.Controllers
             _jwtService = jwtService;
             _userService = userService;
         }
-        [HttpGet]
-        public async Task<List<Chat>> GetChats([FromBody] UserDTO userDTO)
-        {
-            return await _chatService.GetChats(userDTO);
-        }
+
         [HttpPost]
         public async Task<IActionResult> UpdateChat([FromBody] Chat chat)
         {

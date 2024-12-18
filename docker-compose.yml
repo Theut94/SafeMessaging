@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   frontend:
     container_name: frontend
@@ -5,10 +7,25 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "4200:80"
+      - "4200:80"  # Expose frontend on port 4200
     depends_on:
-      - postgres
+      - backend  # Ensure frontend waits for the backend to be up
+    networks:
+      - app-network
   
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "4201:8080"  # Expose backend on port 4201 for external access
+    environment:
+      - ConnectionStrings__PGConnectionString=Host=postgres;Port=5432;Database=postgres;Username=postgres;Password=mysecretpassword ##SHOULD BE HIDDEN NORMALLY
+      - Jwt__Key=qj7orFe/6Z4vkQyqUWhdvbgtqKHj/WogeUhg3vKOiaR1rhBuTPBur2xaQqKoWf0+u2i4aTjchQTKQ4XrcBypPNKjiZfCkoe/gZMx/EDMGeVuMjRTWQ29Yg+G1beKb8sQI4erQdZmyqNstYBr7dgDXgMSepsf3Facl0JvPhwCYAI= ##SHOULD BE HIDDEN
+    networks:
+      - app-network
+
   postgres:
     image: postgres
     container_name: some-postgres
@@ -16,23 +33,16 @@ services:
       POSTGRES_PASSWORD: mysecretpassword
       POSTGRES_USER: postgres
     ports:
-      - "5432:5432"
+      - "5432:5432"  # Expose Postgres on port 5432 for external access (for development)
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
-  
-  backend:
-    container_name: backend
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    environment:
-      - ConnectionStrings__PGConnectionString=Host=postgres;Port=5432;Database=postgres;Username=postgres;Password=mysecretpassword ##SHOULD BE HIDDEN NORMALLY
-      - Jwt__Key=qj7orFe/6Z4vkQyqUWhdvbgtqKHj/WogeUhg3vKOiaR1rhBuTPBur2xaQqKoWf0+u2i4aTjchQTKQ4XrcBypPNKjiZfCkoe/gZMx/EDMGeVuMjRTWQ29Yg+G1beKb8sQI4erQdZmyqNstYBr7dgDXgMSepsf3Facl0JvPhwCYAI= ##SHOULD BE HIDDEN
-    ports: 
-      - "4201:80"
-    depends_on:
-      - postgres
-        
+    networks:
+      - app-network
+
 volumes:
   postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

@@ -29,9 +29,6 @@ namespace Data.Repo.Context
                 entity.Property(u => u.FirstName).IsRequired();
                 entity.Property(u => u.LastName).IsRequired();
 
-                entity.HasMany(u => u.FriendList)
-                      .WithMany();
-
                 entity.HasMany(u => u.Chats)
                       .WithMany(c => c.Users);
 
