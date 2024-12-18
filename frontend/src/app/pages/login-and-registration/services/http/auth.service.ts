@@ -11,9 +11,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(RegisterUserDTO: IRegisterUserDTO) {
+  register(registerUserDTO: IRegisterUserDTO) {
     return this.http.post(this.apiUrl + '/auth/register', {
-      RegisterUserDTO,
+      ...registerUserDTO,
     });
   }
 

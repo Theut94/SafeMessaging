@@ -21,7 +21,7 @@ export class MessageService {
   // we do not expect to get anything back from the server, a status code is enough.
   sendMessage(message: IMessage, GUID: string): Observable<any> {
     return this.http.post<any>(this.apiUrl + '/chat/sendMessage', {
-      message,
+      ...message,
       GUID,
     });
   }
