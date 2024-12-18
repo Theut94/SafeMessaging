@@ -14,8 +14,6 @@ namespace Application.Interface
         public Task<User> GetUser(string GUID);
         public Task<User> EditUser(User user);
         public Task<User> DeleteUser(User user);
-        public Task<User> AddFriend(User user, User friend);
-        public Task<User> RemoveFriend(User user, User friend);
         public Task<List<User>> GetAllUsers();
 
         public Task<User> Login(LoginUserDTO registerUserDTO);

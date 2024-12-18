@@ -49,5 +49,21 @@ namespace Application.Services
             // Return the serialized token
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        public string DecodeJWTString(string jwtString)
+        {
+           
+            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
+            var handler = new JwtSecurityTokenHandler();
+            var validations = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false
+            };
+            var claims = handler.ValidateToken(jwtString, validations, out var tokenSecure);
+            return claims.Claims.First(claim => claim.Type == "Sub").Value;
+        }
     }
 }

@@ -37,11 +37,12 @@ namespace Data.Repo
             return await context.Chats.ToListAsync();
         }
 
+ 
         public async Task<Chat?> GetByIdAsync(string GUID)
         {
             await using var context = _dbContextFactory.CreateDbContext();
 
-            return await context.Chats.FindAsync(GUID);
+            return await context.Chats.Where(chat => chat.GUID == GUID).Include(chat => chat.Messages).FirstOrDefaultAsync();
         }
 
         public async Task UpdateAsync(Chat entity)

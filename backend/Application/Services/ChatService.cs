@@ -4,6 +4,7 @@ using Domain.Models;
 using Domain.Models.DTO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,19 +45,30 @@ namespace Application.Services
             return Task.FromResult(chatToDelete);
         }
 
-        public Task<Chat> GetChat(User user, string GUID)
+        public async Task<ChatDTO> GetChat(User user, string userId)
         {
-            var chat = user.Chats.FirstOrDefault(x => x.GUID == GUID);
-            if (chat == null)
+            var chats = user.Chats;
+            foreach(var chat in chats)
             {
-                throw new InvalidOperationException("Chat not found");
+                foreach(var targetUser in chat.Users)
+                {
+                    if(targetUser.GUID == userId)
+                    {
+                        return new ChatDTO()
+                        {
+                            GUID = chat.GUID,
+                            Messages = chat.Messages
+                        };
+                    }
+                }
             }
-            return Task.FromResult(chat);
+
+            return null;
         }
 
-        public Task<List<Chat>> GetChats(UserDTO user)
+        public async Task<Chat> GetChatById(string chatid)
         {
-            return Task.FromResult(user.Chats);
+           return await _repo.GetByIdAsync(chatid);
         }
     }
 }

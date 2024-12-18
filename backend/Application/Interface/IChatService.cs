@@ -11,9 +11,10 @@ namespace Application.Interface
     public interface IChatService
     {
         public Task<List<Chat>> GetChats(UserDTO user);
-        public Task<Chat> GetChat(User user, string GUID);
+        public Task<ChatDTO> GetChat(User user, string  userId);
         public Task<Chat> CreateChat(User user, Chat chat);
         public Task<Chat> DeleteChat(User user, Chat chat);
         public Task UpdateChat(Chat chat);
+        public Task<Chat> GetChatById(string chatid);
     }
 }
