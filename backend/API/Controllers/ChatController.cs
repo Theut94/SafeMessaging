@@ -20,15 +20,8 @@ namespace API.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateChat([FromBody] Chat chat)
-        {
-            await _chatService.UpdateChat(chat);
-            return Ok();
-        }
-
         [HttpGet("GetChat")]
-        public async Task<IActionResult> GetChat(string Token, string TargetUser)
+        public async Task<IActionResult> GetChat([FromHeader]string Token, string TargetUser)
         {
             var tokenUserID = _jwtService.DecodeJWTString(Token);
             var user = await _userService.GetUser(tokenUserID);
