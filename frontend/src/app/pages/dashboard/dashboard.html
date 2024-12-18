@@ -20,7 +20,7 @@
       <h2 class="chat-title">
         Chat with {{ selectedUser.firstName + ' ' + selectedUser.lastName }}
       </h2>
-      <div class="chat-content" *ngFor="let message of messages">
+      <div class="chat-content" *ngFor="let message of chat.messages">
         <div class="chat-message" [class.mine]="message.sender === 'me'">
           <span
             >{{ message.sender === 'me' ? 'You' : selectedUser.firstName + ' ' +

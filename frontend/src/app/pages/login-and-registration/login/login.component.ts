@@ -44,6 +44,8 @@ export default class LoginComponent implements OnDestroy {
       salt
     );
 
+    sessionStorage.setItem('hashedPassword', hashedPassword);
+
     const loginUserDTO: ILoginUserDTO = {
       username: this.email,
       password: hashedPassword,
@@ -58,7 +60,7 @@ export default class LoginComponent implements OnDestroy {
           this.loading = false;
           this.loginErrorText = '';
           this.router.navigate(['/dashboard']);
-          localStorage.setItem('token', response.token);
+          sessionStorage.setItem('token', response.token);
           return response;
         },
         (error) => {
