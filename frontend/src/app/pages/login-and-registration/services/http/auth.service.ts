@@ -19,7 +19,7 @@ export class AuthService {
 
   login(LoginUserDTO: ILoginUserDTO): Observable<{ token: string }> {
     return this.http.post<{ token: string }>(this.apiUrl + '/auth/login', {
-      LoginUserDTO,
+      ...LoginUserDTO,
     });
   }
 }

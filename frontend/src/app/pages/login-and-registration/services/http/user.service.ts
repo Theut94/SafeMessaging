@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(this.apiUrl + '/user/GetAllUsersAsync', {});
+    return this.http.get<IUser[]>(this.apiUrl + '/user/GetAllUsers', {});
   }
 }
 

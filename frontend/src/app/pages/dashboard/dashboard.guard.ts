@@ -3,7 +3,6 @@ import { inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const dashboardGuard: CanActivateFn = (route, state) => {
-  return true;
   const snackBar = inject(MatSnackBar);
   const router = inject(Router);
 
