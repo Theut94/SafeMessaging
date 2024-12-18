@@ -8,7 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { IUser } from '../login-and-registration/services/http/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { IChat, IMessage, MessageService } from '../login-and-registration/services/http/message.service';
+import {
+  IChat,
+  IMessage,
+  MessageService,
+} from '../login-and-registration/services/http/message.service';
 import { Subject, takeUntil } from 'rxjs';
 import { EncryptionService } from '../login-and-registration/services/security/encryption.service';
 import { KeyService } from '../login-and-registration/services/security/key.service';
@@ -38,8 +42,12 @@ export default class DashboardComponent implements OnInit {
   loading = false;
   chat!: IChat;
 
-  constructor(private route: ActivatedRoute, private messageService: MessageService,
-    private encryptionService: EncryptionService, private keyService: KeyService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private messageService: MessageService,
+    private encryptionService: EncryptionService,
+    private keyService: KeyService
+  ) {}
 
   ngOnDestroy() {
     this.destroy$.next();
@@ -58,7 +66,7 @@ export default class DashboardComponent implements OnInit {
   selectUser(user: any) {
     this.selectedUser = user;
     const selectedUserGuid = user.guid;
-    const token = localStorage.getItem('token') || '';
+    const token = sessionStorage.getItem('token') || '';
 
     this.messageService
       .getChat(token, selectedUserGuid)
@@ -70,9 +78,8 @@ export default class DashboardComponent implements OnInit {
 
           if (response) {
             this.chat = response;
-          }
-          else {
-            return
+          } else {
+            return;
           }
 
           const encryptedPrivateKey = localStorage.getItem('privateKey') || '';
@@ -133,7 +140,7 @@ export default class DashboardComponent implements OnInit {
 
     const sender = this.selectedUser.guid;
 
-    var message: IMessage = {IV: iv, sender: sender, text: this.newMessage};
+    var message: IMessage = { IV: iv, sender: sender, text: this.newMessage };
     this.chat.messages.push(message);
     message.text = encryptedMessage;
 
@@ -142,14 +149,12 @@ export default class DashboardComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         async (response) => {
-        console.log('Message sent:', response);
+          console.log('Message sent:', response);
         },
         (error) => {
           console.error('Failed to send message:', error);
           this.chat.messages.pop(); // works in our simple case
         }
       );
-    
-
   }
 }

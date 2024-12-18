@@ -33,6 +33,7 @@ namespace API.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserDTO registerUserDTO)
         {
+            registerUserDTO.Username = registerUserDTO.Username.ToLower();
             await _userService.Register(registerUserDTO);
             return Ok();
         }

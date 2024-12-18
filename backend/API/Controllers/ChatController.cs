@@ -21,10 +21,17 @@ namespace API.Controllers
         }
 
         [HttpGet("GetChat")]
-        public async Task<IActionResult> GetChat([FromHeader]string Token, string TargetUser)
+        public async Task<IActionResult> GetChat([FromHeader(Name = "Authorization")]string Authorization, [FromQuery]string TargetUser)
         {
-            var tokenUserID = _jwtService.DecodeJWTString(Token);
+            var token = Authorization;
+            if (string.IsNullOrEmpty(token))
+            {
+                return BadRequest("Token is required.");
+            }
+
+            var tokenUserID = _jwtService.DecodeJWTString(token);
             var user = await _userService.GetUser(tokenUserID);
+            //TODO Do chat check and create chat if none exist
             var chat =  await _chatService.GetChat(user, TargetUser);
             return Ok(chat);
         }

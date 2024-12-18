@@ -60,8 +60,8 @@ export default class LoginComponent implements OnDestroy {
         (response) => {
           this.loading = false;
           this.loginErrorText = '';
-          this.router.navigate(['/dashboard']);
           sessionStorage.setItem('token', response.token);
+          this.router.navigate(['/dashboard']);
           return response;
         },
         (error) => {
@@ -72,6 +72,5 @@ export default class LoginComponent implements OnDestroy {
       );
 
     this.loading = false;
-    this.router.navigate(['/dashboard']);
   }
 }

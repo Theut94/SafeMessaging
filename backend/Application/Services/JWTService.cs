@@ -57,8 +57,8 @@ namespace Application.Services
                 ValidateIssuer = false,
                 ValidateAudience = false
             };
-            var claims = handler.ValidateToken(jwtString, validations, out var tokenSecure);
-            return claims.Claims.First(claim => claim.Type == "Sub").Value;
+            var claims = handler.ValidateToken(jwtString, validations, out var tokenSecure);            
+            return claims.Claims.First().Value;
         }
     }
 }

@@ -11,10 +11,10 @@ export class MessageService {
 
   constructor(private http: HttpClient) {}
 
-  getChat(token: string, SelectedUserGuid: string): Observable<IChat> {
+  getChat(Token: string, SelectedUserGuid: string): Observable<IChat> {
     return this.http.get<IChat>(this.apiUrl + '/chat/getChat', {
-      headers: { Authorization: `Bearer ${token}` },
-      params: { SelectedUserGuid },
+      headers: { Authorization: Token },
+      params: { TargetUser: SelectedUserGuid },
     });
   }
 

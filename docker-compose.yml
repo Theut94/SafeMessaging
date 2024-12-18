@@ -23,6 +23,8 @@ services:
     environment:
       - ConnectionStrings__PGConnectionString=Host=postgres;Port=5432;Database=postgres;Username=postgres;Password=mysecretpassword ##SHOULD BE HIDDEN
       - Jwt__Key=qj7orFe/6Z4vkQyqUWhdvbgtqKHj/WogeUhg3vKOiaR1rhBuTPBur2xaQqKoWf0+u2i4aTjchQTKQ4XrcBypPNKjiZfCkoe/gZMx/EDMGeVuMjRTWQ29Yg+G1beKb8sQI4erQdZmyqNstYBr7dgDXgMSepsf3Facl0JvPhwCYAI= ##SHOULD BE HIDDEN
+    depends_on:
+      - postgres
     networks:
       - app-network
 
