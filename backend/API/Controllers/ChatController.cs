@@ -20,11 +20,6 @@ namespace API.Controllers
             _userService = userService;
         }
 
-        {
-            await _chatService.UpdateChat(chat);
-            return Ok();
-        }
-
         [HttpGet("GetChat")]
         public async Task<IActionResult> GetChat([FromHeader]string Token, string TargetUser)
         {
