@@ -17,11 +17,29 @@ namespace Data.Repo
         {
             _dbContextFactory = dbContextFactory;
         }
-        public async Task AddAsync(Chat entity)
+        public async Task<Chat> AddAsync(Chat entity)
         {
             await using var context = _dbContextFactory.CreateDbContext();
+
+            // Attach users if they are already tracked (to avoid tracking duplicates)
+            var distinctUsers = entity.Users
+                .GroupBy(u => u.GUID)
+                .Select(g => g.First())
+                .ToList();
+
+            entity.Users = distinctUsers;
+
+            foreach (var user in entity.Users)
+            {
+                if (context.Entry(user).State == EntityState.Detached)
+                {
+                    context.Users.Attach(user); // Attach the user to the context without re-adding it
+                }
+            }
+
             context.Chats.Add(entity);
             await context.SaveChangesAsync();
+            return entity;
         }
 
         public async Task DeleteAsync(Chat entity)
@@ -43,6 +61,22 @@ namespace Data.Repo
             await using var context = _dbContextFactory.CreateDbContext();
 
             return await context.Chats.Where(chat => chat.GUID == GUID).Include(chat => chat.Messages).FirstOrDefaultAsync();
+        }
+
+        public async Task<Chat?> GetByUserIDsAsync(string userId, string targetUserId){
+            await using var context = _dbContextFactory.CreateDbContext();
+
+            var chat = await context.Chats
+                .Include(c => c.Users)
+                .Include(c => c.Messages)
+                .FirstOrDefaultAsync(c => userId == targetUserId ? 
+                    c.Users.Count == 1 && c.Users.Any(u => u.GUID == userId)
+                    :
+                    c.Users.Any(u => u.GUID == userId) && 
+                    c.Users.Any(u => u.GUID == targetUserId));
+                                
+
+            return chat;
         }
 
         public async Task UpdateAsync(Chat entity)

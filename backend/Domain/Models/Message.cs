@@ -11,6 +11,9 @@ namespace Domain.Models
         public string? Text { get; set; }
         public string? IV { get; set; }
         required public string GUID { get; set; }
+        required public string ChatGUID { get; set; }
         required public string Sender { get; set; }
+
+
     }
 }

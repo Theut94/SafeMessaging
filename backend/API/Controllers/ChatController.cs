@@ -31,8 +31,14 @@ namespace API.Controllers
 
             var tokenUserID = _jwtService.DecodeJWTString(token);
             var user = await _userService.GetUser(tokenUserID);
-            //TODO Do chat check and create chat if none exist
-            var chat =  await _chatService.GetChat(user, TargetUser);
+            var targetUser = await _userService.GetUser(TargetUser);
+            var chat =  await _chatService.GetChatByUserIDs(user, targetUser);
+
+            if(chat == null) {
+                
+                chat = await _chatService.CreateChat(user, targetUser);
+            }
+
             return Ok(chat);
         }
     }

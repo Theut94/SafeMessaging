@@ -117,7 +117,6 @@ export default class RegisterComponent implements OnDestroy {
       this.password,
       salt
     );
-    console.log('hashedPassword: ', hashedPassword);
 
     const iv = this.encryptionService.generateIV();
 

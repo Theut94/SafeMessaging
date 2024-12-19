@@ -13,7 +13,7 @@ namespace Data.Repo.Interface
 
         public Task<IEnumerable<Message>> GetAllAsync();
 
-        public Task AddAsync(Message entity);
+        public Task<Message> AddAsync(Chat chat, Message message);
 
         public Task UpdateAsync(Message entity);
 

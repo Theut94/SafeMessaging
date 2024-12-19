@@ -18,5 +18,9 @@ export const dashboardGuard: CanActivateFn = (route, state) => {
     return false;
   }
 
+  const decodedToken = JSON.parse(atob(token.split('.')[1]));
+  const userId = decodedToken.sub; //extract the user ID
+  sessionStorage.setItem('user', userId);
+
   return true;
 };

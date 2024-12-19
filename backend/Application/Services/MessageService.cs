@@ -24,21 +24,20 @@ namespace Application.Services
             return Task.FromResult(chat.Messages ?? new List<Message>());
         }
 
-        public Task<Message> AddMessage(Chat chat, MessageDTO messageDTO)
+        public async Task<Message> AddMessage(Chat chat, MessageDTO messageDTO)
         {
             var message = new Message() 
             { 
                 GUID = Guid.NewGuid().ToString(), 
                 IV = messageDTO.IV, 
                 Sender = messageDTO.Sender, 
-                Text = messageDTO.Text 
+                Text = messageDTO.Text,
+                ChatGUID = chat.GUID
             };
-            if (chat.Messages == null)
-            {
-                chat.Messages = new List<Message>();
-            }
-            chat.Messages.Add(message);
-            return Task.FromResult(message);
+
+            return await _repo.AddAsync(chat, message);
+
+            
         }
 
         public Task<Message> DeleteMessage(Chat chat, Message message)

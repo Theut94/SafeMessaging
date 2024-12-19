@@ -10,10 +10,11 @@ namespace Data.Repo.Interface
     public interface IChatRepository
     {
         public Task<Chat> GetByIdAsync(string userIds);
+        public Task<Chat> GetByUserIDsAsync(string userId, string targetUserId);
 
         public Task<IEnumerable<Chat>> GetAllAsync();
 
-        public Task AddAsync(Chat entity);
+        public Task<Chat> AddAsync(Chat entity);
 
         public Task UpdateAsync(Chat entity);
 

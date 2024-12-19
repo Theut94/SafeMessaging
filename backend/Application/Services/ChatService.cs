@@ -19,14 +19,21 @@ namespace Application.Services
             _repo = repo;
         }
 
-        public Task<Chat> CreateChat(User user, Chat chat)
+        public async Task<ChatDTO> CreateChat(User user, User targetUser)
         {
-            if (user.Chats.Any(x => x.GUID == chat.GUID))
-            {
-                throw new InvalidOperationException("Chat already exists");
-            }
-            user.Chats.Add(chat);
-            return Task.FromResult(chat);
+            
+            Chat chat = new Chat
+            {     
+                GUID = Guid.NewGuid().ToString(),
+                Users = new List<User> { user, targetUser },
+                Messages = new List<Message>()
+            };
+            chat = await _repo.AddAsync(chat);
+
+            return new ChatDTO {
+                GUID = chat.GUID,
+                Messages = chat.Messages
+            };
         }
 
         public async Task UpdateChat(Chat chat)
@@ -64,6 +71,21 @@ namespace Application.Services
             }
 
             return null;
+        }
+
+        public async Task<ChatDTO> GetChatByUserIDs(User user, User targetUser){
+            var chat = await _repo.GetByUserIDsAsync(user.GUID, targetUser.GUID);
+
+            if(chat == null){
+                return null;
+            }
+
+            ChatDTO chatDTO = new ChatDTO {
+                GUID = chat.GUID,
+                Messages = chat.Messages
+            };
+
+            return chatDTO;
         }
 
         public async Task<Chat> GetChatById(string chatid)

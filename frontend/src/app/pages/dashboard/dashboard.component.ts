@@ -16,7 +16,6 @@ import {
 import { Subject, takeUntil } from 'rxjs';
 import { EncryptionService } from '../login-and-registration/services/security/encryption.service';
 import { KeyService } from '../login-and-registration/services/security/key.service';
-import { enc } from 'crypto-js';
 
 @Component({
   selector: 'app-dashboard',
@@ -65,7 +64,7 @@ export default class DashboardComponent implements OnInit {
 
   selectUser(user: any) {
     this.selectedUser = user;
-    const selectedUserGuid = user.guid;
+    const selectedUserGuid = this.selectedUser.guid;
     const token = sessionStorage.getItem('token') || '';
 
     this.messageService
@@ -73,9 +72,6 @@ export default class DashboardComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         async (response) => {
-          //this.loading = false;
-          //this.getChatErrorText = '';
-
           if (response) {
             this.chat = response;
           } else {
@@ -95,8 +91,9 @@ export default class DashboardComponent implements OnInit {
           const privateKey = await this.keyService.importPrivateKey(
             decryptedPrivateKey
           );
+
           const publicKey = await this.keyService.importPublicKey(
-            user.publicKey
+            this.selectedUser.publicKey
           );
 
           const arrayBufferSharedSecret =
@@ -105,20 +102,20 @@ export default class DashboardComponent implements OnInit {
             arrayBufferSharedSecret
           );
           sessionStorage.setItem('sharedsecret', sharedsecret);
-
-          if (response.messages) {
+          if (response.messages && response.messages.length > 0) {
             this.chat.messages = response.messages.map((message) => ({
               sender: message.sender,
               text: this.encryptionService.decryptMessage(
-                message.IV,
+                message.iv,
                 sharedsecret,
                 message.text
               ),
               GUID: message.GUID,
-              IV: message.IV,
+              iv: message.iv,
             }));
+          } else {
+            this.chat.messages = [];
           }
-          return response;
         },
         (error) => {
           //this.loading = false;
@@ -131,25 +128,28 @@ export default class DashboardComponent implements OnInit {
   sendMessage() {
     const sharedsecret = sessionStorage.getItem('sharedsecret') || '';
 
+    const sender = sessionStorage.getItem('user') || '';
     const iv = this.encryptionService.generateIV();
+    const message: IMessage = { iv: iv, sender: sender, text: this.newMessage };
+    this.chat.messages.push(message);
+
     const encryptedMessage = this.encryptionService.encryptMessage(
       iv,
       sharedsecret,
       this.newMessage
     );
 
-    const sender = this.selectedUser.guid;
-
-    var message: IMessage = { IV: iv, sender: sender, text: this.newMessage };
-    this.chat.messages.push(message);
-    message.text = encryptedMessage;
+    const messageToSend: IMessage = {
+      ...message,
+      text: encryptedMessage,
+    };
 
     this.messageService
-      .sendMessage(message, this.chat.GUID)
+      .sendMessage(messageToSend, this.chat.guid)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         async (response) => {
-          console.log('Message sent:', response);
+          this.newMessage = '';
         },
         (error) => {
           console.error('Failed to send message:', error);

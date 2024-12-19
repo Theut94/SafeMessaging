@@ -17,11 +17,12 @@ namespace Data.Repo
         {
             _dbContextFactory = dbContextFactory;
         }
-        public async Task AddAsync(Message entity)
+        public async Task<Message> AddAsync(Chat chat, Message message)
         {
             await using var context = _dbContextFactory.CreateDbContext();
-            context.Messages.Add(entity);
+            context.Messages.Add(message);
             await context.SaveChangesAsync();
+            return message;
         }
 
         public async Task DeleteAsync(Message entity)

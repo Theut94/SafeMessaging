@@ -19,22 +19,24 @@ export class MessageService {
   }
 
   // we do not expect to get anything back from the server, a status code is enough.
-  sendMessage(message: IMessage, GUID: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl + '/chat/sendMessage', {
-      ...message,
-      GUID,
-    });
+  sendMessage(message: IMessage, chatid: string): Observable<any> {
+    return this.http.post<any>(
+      `${this.apiUrl}/message/postmessage?chatid=${chatid}`,
+      {
+        ...message,
+      }
+    );
   }
 }
 
 export interface IMessage {
   text: string;
-  IV: string;
+  iv: string;
   GUID?: string;
   sender: string;
 }
 
 export interface IChat {
-  GUID: string;
+  guid: string;
   messages: IMessage[];
 }

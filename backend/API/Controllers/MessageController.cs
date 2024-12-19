@@ -18,10 +18,14 @@ namespace API.Controllers
             _chatService = chatservice;
         }
 
-        [HttpPost]
+        [HttpPost("PostMessage")]
         public async Task<IActionResult> PostMessage(MessageDTO message, string chatid)
         {
             Chat chat = await _chatService.GetChatById(chatid);
+            if (chat == null)
+            {
+                return NotFound("Chat not found with chatid: " + chatid );
+            }
             await _messageService.AddMessage(chat, message);
             return Ok();
         }

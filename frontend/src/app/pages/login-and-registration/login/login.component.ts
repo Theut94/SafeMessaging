@@ -51,8 +51,6 @@ export default class LoginComponent implements OnDestroy {
       salt: salt,
     };
 
-    console.log('hasehdPW: ', hashedPassword);
-
     this.authService
       .login(loginUserDTO)
       .pipe(takeUntil(this.destroy$))
@@ -66,6 +64,7 @@ export default class LoginComponent implements OnDestroy {
         },
         (error) => {
           this.loading = false;
+          sessionStorage.clear();
           console.error('Login error:', error);
           this.loginErrorText = 'Login failed. Please try again.';
         }

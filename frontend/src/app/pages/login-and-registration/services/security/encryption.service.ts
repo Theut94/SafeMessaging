@@ -118,7 +118,8 @@ export class EncryptionService {
       padding: CryptoJS.pad.Pkcs7,
     });
 
+    const decryptedString = decrypted.toString(CryptoJS.enc.Utf8);
     // Convert decrypted data back to string
-    return decrypted.toString(CryptoJS.enc.Utf8);
+    return decryptedString;
   }
 }

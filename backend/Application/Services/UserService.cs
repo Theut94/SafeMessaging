@@ -93,7 +93,7 @@ namespace Application.Services
                         UserName = registerUserDTO.Username
                     },
                     GUID = Guid.NewGuid().ToString(),
-                    PublickKey = registerUserDTO.PublicKey
+                    PublicKey = registerUserDTO.PublicKey
 
                 };
                 await _repo.AddAsync(userToCreate);
