@@ -69,9 +69,9 @@ namespace Data.Repo
             var chat = await context.Chats
                 .Include(c => c.Users)
                 .Include(c => c.Messages)
-                .FirstOrDefaultAsync(c => userId == targetUserId ? 
+                .FirstOrDefaultAsync(c => userId == targetUserId ? //If the IDs are the same a user is requesting a chat with themselves
                     c.Users.Count == 1 && c.Users.Any(u => u.GUID == userId)
-                    :
+                    : //Otherwise we check that both IDs exist in the user list of the chat
                     c.Users.Any(u => u.GUID == userId) && 
                     c.Users.Any(u => u.GUID == targetUserId));
                                 

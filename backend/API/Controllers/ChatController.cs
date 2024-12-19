@@ -34,6 +34,7 @@ namespace API.Controllers
             var targetUser = await _userService.GetUser(TargetUser);
             var chat =  await _chatService.GetChatByUserIDs(user, targetUser);
 
+            //If we do not find a chat (we create one for the two users wishing to initiate a chat)
             if(chat == null) {
                 
                 chat = await _chatService.CreateChat(user, targetUser);
