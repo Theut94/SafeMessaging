@@ -31,7 +31,7 @@ Before running the project, ensure you have the following installed:
    ```bash
    git clone https://github.com/theut94/safe-messaging.git
    cd safe-messaging
-
+   ```
 ### Apssettings
 
 ```
@@ -41,4 +41,10 @@ Before running the project, ensure you have the following installed:
   "Jwt": {
     "Key": "<KEY OF ATLEAST 128 bit>"
   }
+```
+
+### Run Dockercompose
+In the root folder of SafeMessaging run the following command :
+```
+docker-compose up
 ```
