@@ -48,3 +48,5 @@ In the root folder of SafeMessaging run the following command :
 ```
 docker-compose up
 ```
+
+it will deploy the system with the needed configurations. Make sure that all containers have started.
