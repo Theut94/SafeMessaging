@@ -8,10 +8,6 @@ namespace Application.Util
 {
     public interface IEncryptionUtil
     {
-        byte[] DeriveKeyFromPassword(string password, byte[] salt);
-
         byte[] HashPassword(string password, byte[] salt);
-
-        byte[] GetSalt();
     }
 }

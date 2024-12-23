@@ -16,7 +16,6 @@ namespace Application
         {
             services.AddScoped<IJWTService, JWTService>();
             services.AddScoped<IChatService, ChatService>();
-            services.AddScoped<ICredentialService, CredentialService>();
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEncryptionUtil, EncryptionUtil>();

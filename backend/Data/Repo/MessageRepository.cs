@@ -23,33 +23,6 @@ namespace Data.Repo
             context.Messages.Add(message);
             await context.SaveChangesAsync();
             return message;
-        }
-
-        public async Task DeleteAsync(Message entity)
-        {
-            await using var context = _dbContextFactory.CreateDbContext();
-            context.Messages.Remove(entity);
-            await context.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<Message>> GetAllAsync()
-        {
-            await using var context = _dbContextFactory.CreateDbContext();
-            return await context.Messages.ToListAsync();
-        }
-
-        public async Task<Message?> GetByIdAsync(string GUID)
-        {
-            await using var context = _dbContextFactory.CreateDbContext();
-
-            return await context.Messages.FindAsync(GUID);
-        }
-
-        public async Task UpdateAsync(Message entity)
-        {
-            await using var context = _dbContextFactory.CreateDbContext();
-            context.Messages.Update(entity);
-            await context.SaveChangesAsync();
-        }
+        }       
     }
 }

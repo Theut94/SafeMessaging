@@ -10,10 +10,6 @@ namespace Application.Util
 {
     public class EncryptionUtil : IEncryptionUtil
     {
-        public byte[] DeriveKeyFromPassword(string password, byte[] salt)
-        {
-            throw new NotImplementedException();
-        }
         public byte[] HashPassword(string password, byte[] salt)
         {
             return Rfc2898DeriveBytes.Pbkdf2(
@@ -24,11 +20,5 @@ namespace Application.Util
                         outputLength: 256 / 8
                     );
         }
-
-        public byte[] GetSalt()
-        {
-            return Convert.FromBase64String(Crypto.GenerateSalt(32));
-        }
-
     }
 }

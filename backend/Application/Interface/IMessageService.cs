@@ -10,9 +10,7 @@ namespace Application.Interface
 {
     public interface IMessageService
     {
-        public Task<List<Message>> GetMessages(Chat chat);
         public Task<Message> AddMessage(Chat chat, MessageDTO messageDTO);
-        public Task<Message> EditMessage(Chat chat, Message message);
-        public Task<Message> DeleteMessage(Chat chat, Message message);
+
     }
 }

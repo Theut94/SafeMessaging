@@ -18,12 +18,6 @@ namespace Data.Repo
         {
             _dbContextFactory = dbContextFactory;
         }
-        public async Task<User?> GetByIdAsync(string Guid)
-        {
-            await using var context = _dbContextFactory.CreateDbContext();
-
-            return await context.Users.FindAsync(Guid);
-        }
 
         public async Task<IEnumerable<User>> GetAllAsync()
         {
@@ -38,19 +32,7 @@ namespace Data.Repo
             await context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(User entity)
-        {
-            await using var context = _dbContextFactory.CreateDbContext();
-            context.Users.Update(entity);
-            await context.SaveChangesAsync();
-        }
-
-        public async Task DeleteAsync(User entity)
-        {
-            await using var context = _dbContextFactory.CreateDbContext();
-            context.Users.Remove(entity);
-            await context.SaveChangesAsync();
-        }
+      
         public async Task<User?> GetUserByEmail(string username)
         {
             username = username.ToLower();
@@ -58,7 +40,5 @@ namespace Data.Repo
             using var context = await _dbContextFactory.CreateDbContextAsync();
             return context.Users.Where(user => user.Credentials.UserName == username).Include(u => u.Credentials).Include(u => u.Chats).FirstOrDefault();
         }
-
-
     }
 }

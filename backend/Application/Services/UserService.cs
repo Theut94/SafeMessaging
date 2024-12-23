@@ -33,30 +33,6 @@ namespace Application.Services
             return Task.FromResult(user);
         }
 
-
-        public Task<User> DeleteUser(User user)
-        {
-            var userToDelete = _repo.GetAllAsync().Result.FirstOrDefault(x => x.GUID == user.GUID);
-            if (userToDelete == null)
-            {
-                throw new InvalidOperationException("User not found");
-            }
-            _repo.DeleteAsync(userToDelete);
-            return Task.FromResult(userToDelete);
-        }
-
-        public Task<User> EditUser(User user)
-        {
-            var userToEdit = _repo.GetAllAsync().Result.FirstOrDefault(x => x.GUID == user.GUID);
-            if (userToEdit == null)
-            {
-                throw new InvalidOperationException("User not found");
-            }
-            _repo.UpdateAsync(user);
-            return Task.FromResult(user);
-        }
-
-
         public async Task<User?> Login(LoginUserDTO loginUserDTO)
         {
             var user = await _repo.GetUserByEmail(loginUserDTO.Username);

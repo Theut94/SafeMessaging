@@ -42,19 +42,6 @@ namespace Data.Repo
             return entity;
         }
 
-        public async Task DeleteAsync(Chat entity)
-        {
-            await using var context = _dbContextFactory.CreateDbContext();
-            context.Chats.Remove(entity);
-            await context.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<Chat>> GetAllAsync()
-        {
-            await using var context = _dbContextFactory.CreateDbContext();
-            return await context.Chats.ToListAsync();
-        }
-
  
         public async Task<Chat?> GetByIdAsync(string GUID)
         {
@@ -79,11 +66,5 @@ namespace Data.Repo
             return chat;
         }
 
-        public async Task UpdateAsync(Chat entity)
-        {
-            await using var context = _dbContextFactory.CreateDbContext();
-            context.Chats.Update(entity);
-            await context.SaveChangesAsync();
-        }
     }
 }

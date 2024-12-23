@@ -18,12 +18,6 @@ namespace Application.Services
         {
             _repo = repo;
         }
-
-        public Task<List<Message>> GetMessages(Chat chat)
-        {
-            return Task.FromResult(chat.Messages ?? new List<Message>());
-        }
-
         public async Task<Message> AddMessage(Chat chat, MessageDTO messageDTO)
         {
             var message = new Message() 
@@ -35,38 +29,7 @@ namespace Application.Services
                 ChatGUID = chat.GUID
             };
 
-            return await _repo.AddAsync(chat, message);
-
-            
-        }
-
-        public Task<Message> DeleteMessage(Chat chat, Message message)
-        {
-            var messageToDelete = chat.Messages?.FirstOrDefault(x => x.GUID == message.GUID);
-            if (messageToDelete == null)
-            {
-                throw new InvalidOperationException("Message not found");
-            }
-            if (chat.Messages != null)
-            {
-                chat.Messages.Remove(messageToDelete);
-            }
-            return Task.FromResult(messageToDelete);
-        }
-
-        public Task<Message> EditMessage(Chat chat, Message message)
-        {
-            var messageToEdit = chat.Messages?.FirstOrDefault(x => x.GUID == message.GUID);
-            if (messageToEdit == null)
-            {
-                throw new InvalidOperationException("Message not found");
-            }
-            if (chat.Messages != null)
-            {
-                chat.Messages.Remove(messageToEdit);
-                chat.Messages.Add(message);
-            }
-            return Task.FromResult(message);
+            return await _repo.AddAsync(chat, message);            
         }
     }
 }

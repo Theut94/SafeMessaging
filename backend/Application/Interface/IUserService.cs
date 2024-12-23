@@ -12,10 +12,7 @@ namespace Application.Interface
     public interface IUserService
     {
         public Task<User> GetUser(string GUID);
-        public Task<User> EditUser(User user);
-        public Task<User> DeleteUser(User user);
         public Task<List<User>> GetAllUsers();
-
         public Task<User> Login(LoginUserDTO registerUserDTO);
         public Task Register(RegisterUserDTO registerUserDTO);
     }
