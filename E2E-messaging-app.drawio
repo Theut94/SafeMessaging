@@ -1,0 +1,381 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0" version="25.0.3">
+  <diagram name="Page-1" id="lEONRMlaM8S5YIbZTGyH">
+    <mxGraphModel dx="1388" dy="623" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="egEGo5dULHKQxU_D1aQN-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="100" y="1170" width="290" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="160" y="1230" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-3" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="540" y="220" width="20" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-4" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="80" y="220" width="20" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-5" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.176;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="egEGo5dULHKQxU_D1aQN-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="102" y="240" as="sourcePoint" />
+            <mxPoint x="110" y="280" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="130" y="240" />
+              <mxPoint x="130" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-6" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Client&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="60" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-7" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Backend&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="520" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-8" value="Create salt and IV, hash password,&lt;br&gt;create DH key pair, save private key, IV and salt locally." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="130" y="240" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-9" value="a" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="521.8299999999996" as="sourcePoint" />
+            <mxPoint x="100" y="521.83" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-10" value="201 (&quot;Confirmation email sent to your email...&quot;)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="187" y="489.99999999999994" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-11" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="220" width="20" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-12" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Database&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="980" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-13" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b style=&quot;font-size: 26px;&quot;&gt;Registration&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="520" y="130" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-14" value="&lt;b&gt;Brugerens device&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="200" y="1130" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-15" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="540" y="1170" width="290" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-16" value="&lt;b&gt;Databasen&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="645" y="1130" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-17" value="Private Key" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="185" y="1270" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-18" value="Public key" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="640" y="1240" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-19" value="Session Key" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="185" y="1245" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-20" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=0;" parent="1" source="egEGo5dULHKQxU_D1aQN-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="40" y="1160" as="sourcePoint" />
+            <mxPoint x="160" y="1390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-21" value="Encrypted med brugerens password" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="100" y="1398" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-22" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=0;startArrow=classic;startFill=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="536.5" y="320.00000000000006" as="sourcePoint" />
+            <mxPoint x="99.5" y="320.04" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-23" value="{register user DTO}" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="187" y="290" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-24" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=0;startArrow=classic;startFill=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="360" as="sourcePoint" />
+            <mxPoint x="563" y="360.03999999999996" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-25" value="Get user by email" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="650.5" y="330" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-26" value="" style="endArrow=classic;html=1;rounded=0;entryX=1.043;entryY=0.144;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="561" y="440" as="sourcePoint" />
+            <mxPoint x="560" y="480" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="589" y="440" />
+              <mxPoint x="589" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-27" value="If null is returned;&lt;div&gt;Hash password, save user to database&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="589" y="440" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-28" value="" style="endArrow=classic;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=1;startArrow=none;startFill=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="400" as="sourcePoint" />
+            <mxPoint x="563" y="400.03999999999996" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-29" value="returns user or null" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="650.5" y="370" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-30" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="1720" y="220" width="20" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-31" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="1260" y="220" width="20" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-32" value="" style="endArrow=classic;html=1;rounded=0;entryX=1.1;entryY=0.158;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="egEGo5dULHKQxU_D1aQN-31" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1282" y="240" as="sourcePoint" />
+            <mxPoint x="1290" y="280" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1310" y="240" />
+              <mxPoint x="1310" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-33" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Client&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-34" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Backend&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1700" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-35" value="Get salt from local storage, hash password and save it to session storage." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1310" y="240" width="270" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-36" value="a" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1720" y="521.8299999999996" as="sourcePoint" />
+            <mxPoint x="1280" y="521.83" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-37" value="200 (set JWT in session storage)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1367" y="490" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-38" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="2180" y="220" width="20" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-39" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Database&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="2160" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-40" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b style=&quot;font-size: 26px;&quot;&gt;Login&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1700" y="130" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-41" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=0;startArrow=classic;startFill=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1716.5" y="320.00000000000006" as="sourcePoint" />
+            <mxPoint x="1279.5" y="320.04" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-42" value="{login user DTO}" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1367" y="290" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-43" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=0;startArrow=classic;startFill=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2180" y="360" as="sourcePoint" />
+            <mxPoint x="1743" y="360.03999999999996" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-44" value="Get user by email" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1830.5" y="330" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-45" value="" style="endArrow=classic;html=1;rounded=0;entryX=1.043;entryY=0.144;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1741" y="440" as="sourcePoint" />
+            <mxPoint x="1740" y="480" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1769" y="440" />
+              <mxPoint x="1769" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-46" value="Check Pbkdf2 hash&lt;div&gt;by rehashing and comparing results&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1769" y="440" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-47" value="" style="endArrow=classic;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=1;startArrow=none;startFill=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2180" y="400" as="sourcePoint" />
+            <mxPoint x="1743" y="400.03999999999996" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-48" value="returns user or null" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1830.5" y="370" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-49" value="a" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;strokeColor=#FF6666;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1720" y="558.9999999999995" as="sourcePoint" />
+            <mxPoint x="1280" y="559" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-50" value="&lt;font color=&quot;#ff6666&quot;&gt;400 (Bad Request)&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="1367" y="527.17" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-51" value="In any case we return 201 OK, as to not leak user information" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="220" y="540" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-52" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="550" y="740" width="20" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-53" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="90" y="740" width="20" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-54" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="112" y="760" as="sourcePoint" />
+            <mxPoint x="110" y="800" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="140" y="760" />
+              <mxPoint x="140" y="800" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-55" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Client&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="70" y="710" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-56" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Backend&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="530" y="710" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-57" value="Generate 16 byte IV and encrypt Message with AES using session key and IV&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="140" y="760" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-58" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="1010" y="740" width="20" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-59" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Database&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="990" y="710" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-60" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=0;startArrow=classic;startFill=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="546.5" y="840" as="sourcePoint" />
+            <mxPoint x="109.5" y="840.04" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-61" value="PostMessage {postMessageDTO)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="197" y="810" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-62" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=0;startArrow=classic;startFill=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1010" y="880" as="sourcePoint" />
+            <mxPoint x="573" y="880.04" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-63" value="Save message DTO with relation to a chat" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="660.5" y="850" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-64" value="" style="endArrow=classic;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=1;startArrow=none;startFill=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1010" y="920" as="sourcePoint" />
+            <mxPoint x="573" y="920.04" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-65" value="&amp;lt;Rows affected&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="660.5" y="890" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-66" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="1710" y="760" width="20" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-67" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="1250" y="760" width="20" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-68" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Client&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1230" y="730" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-69" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Backend&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1690" y="730" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-70" value="a" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1710" y="999.4199999999995" as="sourcePoint" />
+            <mxPoint x="1270" y="999.42" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-71" value="200 (ChatDTO)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1357" y="967.59" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-72" value="" style="swimlane;startSize=0;" parent="1" vertex="1">
+          <mxGeometry x="2170" y="760" width="20" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-73" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Database&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="2150" y="730" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-74" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b style=&quot;font-size: 26px;&quot;&gt;Get Chat and Messages&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1563.5" y="680" width="313" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-75" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=0;startArrow=classic;startFill=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1710" y="799" as="sourcePoint" />
+            <mxPoint x="1273" y="799.04" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-76" value="getChat {token, selectedUserId}" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1360.5" y="769" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-77" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=0;startArrow=classic;startFill=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2167" y="840" as="sourcePoint" />
+            <mxPoint x="1730" y="840.04" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-78" value="Query database" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1817.5" y="810" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-79" value="" style="endArrow=classic;html=1;rounded=0;entryX=1.043;entryY=0.144;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1271" y="1039" as="sourcePoint" />
+            <mxPoint x="1270" y="1079" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1299" y="1039" />
+              <mxPoint x="1299" y="1079" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-80" value="Decrypt private key and generate a session key for the chat, based on client private key and other party public key." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1299" y="1039" width="211" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-81" value="" style="endArrow=classic;html=1;rounded=0;exitX=-0.1;exitY=0.216;exitDx=0;exitDy=0;exitPerimeter=0;endFill=1;startArrow=none;startFill=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2166" y="880" as="sourcePoint" />
+            <mxPoint x="1729" y="880.04" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-83" value="&lt;span style=&quot;font-size: 18px;&quot;&gt;&lt;b style=&quot;font-size: 26px;&quot;&gt;Post Message&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="457" y="660" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-84" value="Data" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1820.5" y="850" width="260" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-85" value="" style="endArrow=classic;html=1;rounded=0;entryX=1.043;entryY=0.144;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1271" y="1119" as="sourcePoint" />
+            <mxPoint x="1270" y="1159" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1299" y="1119" />
+              <mxPoint x="1299" y="1159" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-86" value="Decrypts each message individually using AES, based on the session key and a message&#39;s IV." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="1299" y="1119" width="211" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="egEGo5dULHKQxU_D1aQN-87" value="We assume a session key is already created and saved locally." style="shape=note;size=20;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="267" y="630" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Xx9P6Mza27EdwEgslil1-2" value="" style="endArrow=classic;html=1;rounded=0;endFill=1;startArrow=none;startFill=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1731" y="920" as="sourcePoint" />
+            <mxPoint x="1731" y="960" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1760" y="920" />
+              <mxPoint x="1760" y="960" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Xx9P6Mza27EdwEgslil1-3" value="Does the chat exist? If not create one in the database and return it." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1764" y="924" width="149.5" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
