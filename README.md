@@ -38,8 +38,8 @@ Before running the project, ensure you have the following installed:
 "ConnectionStrings": {
   "PGConnectionString": "<CONNECTIONSTRING>"
 },
-  "Jwt": {
-    "Key": "<KEY OF ATLEAST 128 bit>"
+  "JWT": {
+    "KEY": "<KEY OF ATLEAST 128 bit>"
   }
 ```
 
