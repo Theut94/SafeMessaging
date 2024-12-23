@@ -1,6 +1,6 @@
 # SafeMessaging
 
-SafeMessaging is a secure messaging application built with .NET Web API back, an angular 19 frontend and a postgres 17 database. The project prioritizes security, efficiency, and scalability, making it ideal for modern communication needs.
+SafeMessaging is a secure messaging application built with a .NET 8 Web API backend, an angular 19 frontend and a postgres 17 database. The project prioritizes security, efficiency, and scalability, making it ideal for modern communication needs.
 
 ## Features
 
