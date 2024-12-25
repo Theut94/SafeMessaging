@@ -50,3 +50,7 @@ docker-compose up
 ```
 
 it will deploy the system with the needed configurations. Make sure that all containers have started.
+
+### Manual Testing
+
+If you want to test the application with 2 users, you need to have one in normal browser, and the other in incognito or in another browser.
